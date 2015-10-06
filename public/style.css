@@ -46,6 +46,7 @@ body {
 
 #malerliste {
     list-style-type: none;
+    margin-right: 10px;
     padding: 0;
     width: 10%;
     heigt: auto;
