@@ -1,35 +1,122 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Socket.IO chat</title>
+
+<head>
+    <title>XTREMEDRAW!!!111</title>
     <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font: 13px Helvetica, Arial;
+        }
+        
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #messages li {
+            padding: 5px 10px;
+        }
+        
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+        
+        #sendefenster {
+            background: #000;
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        #sendefenster input {
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: .5%;
+        }
+        
+        #sendefenster button {
+            width: 9%;
+            background: rgb(250, 224, 255);
+            border: none;
+            padding: 10px;
+        }
     </style>
-  </head>
-  <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+</head>
+
+<body>
+    <div id="chat">
+        <ul id="messages"></ul>
+        <div id="sendefenster">
+            <input id="m" />
+            <button id="sendebutton">Send</button>
+        </div>
+    </div>
+    
+    <div id ="login">
+        <input id = "usr"/>
+        <button id = "usrlogin">Anmelden</button>
+    </div>
+    
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    
+
+    
     <script>
-      var socket = io();
-      $('form').submit(function(){
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
+        //chat ausblenden
+        document.getElementById("chat").style.visibility = 'hidden';
+        
+        
+        var socket = io();
+        //Anmeldelogik
+        document.getElementById("usrlogin").onclick = function () {
+            var usrname = document.getElementById("usr");
+            socket.emit('beitritt', usrname.value);
+        };
+        
+
+        //Chat Logik
+        var sendebutton = document.getElementById("sendebutton");
+        var text = document.getElementById("m");
+        sendebutton.onclick = function () {
+            socket.emit('chat message', text.value);
+            text.value = '';
+        }
+        text.onkeypress = function (key) {
+            if (key.which == 13) {
+                sendebutton.onclick();
+            }
+        }
+
+        socket.on('chat message', function (msg) {
+            var liste = document.getElementById("messages");
+            var child = document.createElement("li");
+            child.appendChild(document.createTextNode(msg));
+
+            liste.appendChild(child);
+        }); 
+        
+        
+        socket.on('beitritt', function(msg){
+         document.getElementById("chat").style.visibility = "visible";
+            document.getElementById("login").style.visibility = "hidden";
+            var liste = document.getElementById("messages");
+            var child = document.createElement("li");
+            child.appendChild(document.createTextNode(msg));
+
+            liste.appendChild(child);
+        });
+        
+        // Chat Logik Ende
     </script>
-  </body>
+</body>
+
 </html>
