@@ -3,53 +3,7 @@
 
 <head>
     <title>XTREMEDRAW!!!111</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font: 13px Helvetica, Arial;
-        }
-        
-        #messages {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        #messages li {
-            padding: 5px 10px;
-        }
-        
-        #messages li:nth-child(odd) {
-            background: #eee;
-        }
-        
-        #sendefenster {
-            background: #000;
-            padding: 3px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        
-        #sendefenster input {
-            border: 0;
-            padding: 10px;
-            width: 90%;
-            margin-right: .5%;
-        }
-        
-        #sendefenster button {
-            width: 9%;
-            background: rgb(250, 224, 255);
-            border: none;
-            padding: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -68,55 +22,7 @@
     
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     
-
-    
-    <script>
-        //chat ausblenden
-        document.getElementById("chat").style.visibility = 'hidden';
-        
-        
-        var socket = io();
-        //Anmeldelogik
-        document.getElementById("usrlogin").onclick = function () {
-            var usrname = document.getElementById("usr");
-            socket.emit('beitritt', usrname.value);
-        };
-        
-
-        //Chat Logik
-        var sendebutton = document.getElementById("sendebutton");
-        var text = document.getElementById("m");
-        sendebutton.onclick = function () {
-            socket.emit('chat message', text.value);
-            text.value = '';
-        }
-        text.onkeypress = function (key) {
-            if (key.which == 13) {
-                sendebutton.onclick();
-            }
-        }
-
-        socket.on('chat message', function (msg) {
-            var liste = document.getElementById("messages");
-            var child = document.createElement("li");
-            child.appendChild(document.createTextNode(msg));
-
-            liste.appendChild(child);
-        }); 
-        
-        
-        socket.on('beitritt', function(msg){
-         document.getElementById("chat").style.visibility = "visible";
-            document.getElementById("login").style.visibility = "hidden";
-            var liste = document.getElementById("messages");
-            var child = document.createElement("li");
-            child.appendChild(document.createTextNode(msg));
-
-            liste.appendChild(child);
-        });
-        
-        // Chat Logik Ende
-    </script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
