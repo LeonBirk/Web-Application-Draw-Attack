@@ -13,8 +13,8 @@ io.on('connection', function (spieler) {
     
             spieler.on('chat message', function (msg) {
                 console.log(msg);
-                var nachricht = alleSpieler[spieler.id]
-                io.emit('chat message', msg);
+                var nachricht = alleSpieler[spieler.id] + ": " + msg;
+                io.emit('chat message', nachricht);
             });
     
     
