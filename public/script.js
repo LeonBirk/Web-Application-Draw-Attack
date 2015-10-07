@@ -1,5 +1,8 @@
 //chat ausblenden
         document.getElementById("chat").style.visibility = 'hidden';
+
+//Malbereich ausbleben
+        document.getElementById('malbereich').style.visibility = 'hidden';
         
         
         var socket = io();
@@ -34,6 +37,7 @@
         
         socket.on('beitritt', function(msg){
          document.getElementById("chat").style.visibility = "visible";
+            document.getElementById("malbereich").style.visibility = "visible";
             document.getElementById("login").style.visibility = "hidden";
             var liste = document.getElementById("messages");
             var child = document.createElement("li");
