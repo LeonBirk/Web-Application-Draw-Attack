@@ -26,7 +26,8 @@ io.on('connection', function (spieler) {
                 var nachricht = alleSpieler[i].name + ": " + msg;
             io.emit('chat message', nachricht);
         }
-
+        spieler.punktzahl++;
+        console.log('Anzahl der Messages: ' + spieler.punktzahl);
 
     });
 
@@ -34,6 +35,7 @@ io.on('connection', function (spieler) {
     //Anmeldung
     spieler.on('beitritt', function (name) {
         spieler.name = name;
+        spieler.punktzahl = 0;
         alleSpieler.push(spieler);
         console.log(spieler.id);
         spieler.emit('beitritt', "Hallo du! Willkommen im Chat");

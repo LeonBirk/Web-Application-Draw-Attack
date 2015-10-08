@@ -47,3 +47,5 @@
         });
         
         // Chat Logik Ende
+        // Liste der Spieler
+        
