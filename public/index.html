@@ -24,20 +24,22 @@
 </head>
 
 <body>
-    <div id="chat">
-        <ul id="messages"></ul>
-        <div id="sendefenster">
+
+    <div id="chat" >
+	<ul id="messages" width="830" height="100" style="position:absolute;top:430px;left:20px;border:2px solid;"></ul>
+ 
+		<div id="sendefenster">
             <input id="m" />
             <button id="sendebutton">Send</button>
         </div>
     </div>
-
-    <div id="rateboard">
-    </div>
-
+    
+    <div id="rateboard" width="300" height="100" style="position:absolute;top:320px;left:550px;border:2px solid;">
+	</div>
+    
     <div id="malbereich">
-        <canvas id="leinwand" width="500" height="200"></canvas>
-    </div>
+        <canvas id="leinwand" width="400" height="400" style="position:absolute;top:20px;left:20px;border:2px solid;"></canvas>
+	</div>
 
     <div id="malerbereich" align="right">
         <ol id="malerliste"></ol>
@@ -45,23 +47,23 @@
 
     <div id="login">
         <div id="Anmeldetitel">Username</div>
-        <input id="usr" placeholder="Username" />
+        <input id="usr" />
         <button id="usrlogin">Anmelden</button>
     </div>
 
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
     <script src="./script.js"></script>
-
+    
     <script>
         var paint = false;
-
-
+        
+        
         // zum initialisieren des Malbereichs
         leinwand = document.getElementById('leinwand');
         context = leinwand.getContext("2d");
-
-
+        
+        
         leinwand.addEventListener("mousedown", malbeginn, false);
         leinwand.addEventListener("mousemove", malen, false);
         leinwand.addEventListener("mouseup", malende, false);
@@ -77,11 +79,11 @@
             clickY.push(y);
             clickDrag.push(dragging);
         }
-
-        function malbeginn(e) {
+        
+        function malbeginn(e){
             var mouseX = e.pageX - this.offsetLeft;
             var mouseY = e.pageY - this.offsetTop;
-
+            
             paint = true;
             addClick(mouseX, mouseY);
             redraw;
@@ -94,33 +96,33 @@
             }
         }
 
-        function malende(e) {
-            paint = false;
-        }
-
-        function ausBildschirm(e) {
-            paint = false;
-        }
-
-        function redraw() {
-            context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-
-            context.strokeStyle = "#df4b26";
-            context.lineJoin = "round";
-            context.lineWidth = 5;
-
-            for (var i = 0; i < clickX.length; i++) {
-                context.beginPath();
-                if (clickDrag[i] && i) {
-                    context.moveTo(clickX[i - 1], clickY[i - 1]);
-                } else {
-                    context.moveTo(clickX[i] - 1, clickY[i]);
-                }
-                context.lineTo(clickX[i], clickY[i]);
-                context.closePath();
-                context.stroke();
+            function malende(e) {
+                paint = false;
             }
-        }
+
+            function ausBildschirm(e) {
+                paint = false;
+            }
+
+            function redraw() {
+                context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+
+                context.strokeStyle = "#df4b26";
+                context.lineJoin = "round";
+                context.lineWidth = 5;
+
+                for (var i = 0; i < clickX.length; i++) {
+                    context.beginPath();
+                    if (clickDrag[i] && i) {
+                        context.moveTo(clickX[i - 1], clickY[i - 1]);
+                    } else {
+                        context.moveTo(clickX[i] - 1, clickY[i]);
+                    }
+                    context.lineTo(clickX[i], clickY[i]);
+                    context.closePath();
+                    context.stroke();
+                }
+            }
     </script>
 </body>
 

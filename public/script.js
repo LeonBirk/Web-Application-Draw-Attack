@@ -1,5 +1,8 @@
 //chat ausblenden
         document.getElementById("chat").style.visibility = 'hidden';
+//Ratebereich ausbleben
+        document.getElementById('rateboard').style.visibility = 'hidden';
+        
 
 //Malbereich ausbleben
         document.getElementById('malbereich').style.visibility = 'hidden';
@@ -38,6 +41,7 @@
         socket.on('beitritt', function(msg){
          document.getElementById("chat").style.visibility = "visible";
             document.getElementById("malbereich").style.visibility = "visible";
+			document.getElementById("rateboard").style.visibility = "visible";
             document.getElementById("login").style.visibility = "hidden";
             var liste = document.getElementById("messages");
             var child = document.createElement("li");
@@ -46,6 +50,12 @@
             liste.appendChild(child);
         });
         
+		
+//Das zu erratende Wort wird angezeigt
+		socket.on('raten', function (msg) {
+            document.getElementById("rateboard").innerHTML = (msg);
+            
+        }); 
         // Chat Logik Ende
         // Liste der Spieler
         
