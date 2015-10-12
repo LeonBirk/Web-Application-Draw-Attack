@@ -9,8 +9,16 @@ body {
 }
 
 #messages {
+    width: auto;
+    max-width: 90%;
+    height: auto;
+    max-height: 100px;
+    overflow: auto;
+    position: absolute;
+    top: 440px;
+    left: 20px;
+    border: 2px solid;
     list-style-type: none;
-    margin: 0;
     padding: 0;
 }
 
@@ -45,8 +53,10 @@ body {
 }
 
 #malerliste {
+    position: absolute;
     list-style-type: none;
-    margin-right: 10px;
+    top: 50px;
+    right: 10px;
     padding: 0;
     width: 10%;
     height: auto;
@@ -58,13 +68,22 @@ body {
     padding: 5px 10px;
 }
 
+#malbereich{
+ width: 400px;
+    height: 400px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border: 2px solid;
+    border-color: darkviolet;
+}
+    
 #login {
     width: 300px;
     height: 230px;
     overflow: hidden;
     background: #1e1e1e;
     border-radius: 6px;
-    margin: 50px auto;
+    margin: auto;
     box-shadow: 0px 0px 50px rgba(0, 0, 0, .8);
 }
 
@@ -125,4 +144,15 @@ body {
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+#rateboard{
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    overflow: hidden;
+    margin-top: 320px;
+    margin-left: 550px;
+    border: 2px solid;
+
 }
