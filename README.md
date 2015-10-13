@@ -24,6 +24,7 @@
         * Kommentare im Code
         * Größe erst nachträglich über script definieren
         * Rahmen, schön usw.
+        * Löschen, wenn geraten
         
     * Rangliste / Userliste
         * Zur Rangliste machen
@@ -31,3 +32,6 @@
         * Wer ist da
         * box
     
+    * Countdown Timer
+        * alles
+        

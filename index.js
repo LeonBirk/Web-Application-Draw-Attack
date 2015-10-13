@@ -27,9 +27,10 @@ io.on('connection', function (spieler) {
     //Senden von Chatnachrichten
     spieler.on('chat message', function (msg) {
         console.log(msg);
+        var curSpieler; 
         for (var i = 0; i < alleSpieler.length; i++) {
             if (alleSpieler[i].id == spieler.id){
-                var curSpieler = i; 
+                curSpieler = i; 
                 var nachricht = alleSpieler[i].name + ": " + msg;
             io.emit('chat message', nachricht);
                 break;
@@ -50,7 +51,6 @@ io.on('connection', function (spieler) {
         spieler.points = 0; ////Punkte für das richtige Erraten
 		if(alleSpieler.length == 0){      
 		spieler.zustand = 1; 
-		curZeichnerIndex = 0;////  Index im Spieler-Array
 		}		
 		else {			
 		spieler.zustand = 0;	
@@ -72,6 +72,8 @@ io.on('connection', function (spieler) {
         for(var i = 0; i < alleSpieler.length; i++){
             if(alleSpieler[i].id = spieler.id){
                 alleSpieler.slice(i)
+                nachricht = alleSpieler[i].name + 'hat das Spiel verlassen';
+                io.emit('chat message', nachricht);
                 break;
             }
         }
