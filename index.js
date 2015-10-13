@@ -24,7 +24,7 @@ app.get('/', function (req, res) {
 
 io.on('connection', function (spieler) {
 
-    //BREAK nach gefunden fehlt
+    //Senden von Chatnachrichten
     spieler.on('chat message', function (msg) {
         console.log(msg);
         for (var i = 0; i < alleSpieler.length; i++) {
@@ -32,6 +32,7 @@ io.on('connection', function (spieler) {
                 var curSpieler = i; 
                 var nachricht = alleSpieler[i].name + ": " + msg;
             io.emit('chat message', nachricht);
+                break;
 			}
         }
         chkGuess(msg,curSpieler); 
@@ -64,6 +65,17 @@ io.on('connection', function (spieler) {
     
     spieler.on('zeichnung', function (vonX, vonY, nachX, nachY){
        spieler.broadcast.emit('malen', vonX, vonY, nachX, nachY); 
+    });
+    
+    //Spieler verlässt das Spiel
+    spieler.on('verlassen', function(){
+        for(var i = 0; i < alleSpieler.length; i++){
+            if(alleSpieler[i].id = spieler.id){
+                alleSpieler.slice(i)
+                break;
+            }
+        }
+        
     });
 });
 
@@ -130,14 +142,3 @@ function chkGuess(guess,idx)
   
     }
 }
-
-
-
-
-
-
-
-
-
-
-

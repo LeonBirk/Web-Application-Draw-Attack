@@ -56,6 +56,11 @@
 
             liste.appendChild(child);
         });
+
+//Spieler schließt den Tab
+    window.onbeforeunload = function(){
+        socket.emit('verlassen');   
+    }
         
 		
 //Das zu erratende Wort wird angezeigt
