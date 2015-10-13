@@ -7,8 +7,7 @@
         * usw.
         
     * Anmeldung
-        * Login mit Enter
-        * Alles schön (CSS, etc)
+        * soweit alles gelöst
     
     * Chat
         * schön

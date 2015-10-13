@@ -9,10 +9,17 @@
         
         
         var socket = io();
+
         //Anmeldelogik
-        document.getElementById("usrlogin").onclick = function () {
+        var loginbutton = document.getElementById("usrlogin");
             var usrname = document.getElementById("usr");
+        loginbutton.onclick = function () {
             socket.emit('beitritt', usrname.value);
+        }
+        usrname.onkeypress = function (key) {
+            if (key.which == 13) {
+                loginbutton.onclick();
+            }
         };
         
 
