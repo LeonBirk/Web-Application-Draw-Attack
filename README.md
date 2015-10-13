@@ -21,8 +21,7 @@
         * Farben
         * Positionierung
         * Sperren für nichtmaler
-        * senden des gemalten
-        * Kommentare
+        * Kommentare im Code
         * Größe erst nachträglich über script definieren
         * Rahmen, schön usw.
         

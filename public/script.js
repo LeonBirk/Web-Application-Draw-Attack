@@ -65,4 +65,70 @@
         }); 
         // Chat Logik Ende
         // Liste der Spieler
+
+/*
+*    Logik des Malbereiches
+*/
+
+        var paint = false;
+        
+        
+        // zum initialisieren des Malbereichs
+        leinwand = document.getElementById('leinwand');
+        context = leinwand.getContext("2d");
+        
+        
+        leinwand.addEventListener("mousedown", malbeginn, false);
+        leinwand.addEventListener("mousemove", sendemalen, false);
+        leinwand.addEventListener("mouseup", malende, false);
+        leinwand.addEventListener("mouseleave", ausBildschirm, false);
+
+        var vorherigeClicks = {};
+        var clickDrag = new Array();
+        
+        function malbeginn(e){
+            e.preventDefault();
+            vorherigeClicks.mouseX = e.pageX - leinwand.offsetLeft;
+            vorherigeClicks.mouseY = e.pageY - leinwand.offsetTop;
+            
+            paint = true;
+        }
+
+        function sendemalen(e) {
+            
+            if (paint) {
+                neuX = e.pageX - leinwand.offsetLeft;
+                neuY =  e.pageY - leinwand.offsetTop;
+                socket.emit('zeichnung', vorherigeClicks.mouseX, vorherigeClicks.mouseY, neuX, neuY);
+                malen(vorherigeClicks.mouseX, vorherigeClicks.mouseY, neuX, neuY);                
+                vorherigeClicks.mouseX = neuX;
+                vorherigeClicks.mouseY = neuY;                
+            }
+            
+        }
+
+            function malende(e) {
+                paint = false;
+                
+            }
+
+            function ausBildschirm(e) {
+                paint = false;
+            }
+
+            function malen(vonX, vonY, nachX, nachY) {
+                context.clearRect(0, 0, leinwand.width, leinwand.height); // Clears the canvas
+
+                context.strokeStyle = "#df4b26";
+                context.lineJoin = "round";
+                context.lineWidth = 5;
+                
+                context.moveTo(vonX, vonY);
+                context.lineTo(nachX, nachY);
+                context.stroke();
+            }
+
+            socket.on('malen', function(vonX, vonY, nachX, nachY){
+                malen(vonX, vonY, nachX, nachY);
+            });
         

@@ -68,9 +68,7 @@ body {
     padding: 5px 10px;
 }
 
-#malbereich{
- width: 400px;
-    height: 400px;
+#leinwand{
     margin-top: 20px;
     margin-left: 20px;
     border: 2px solid;

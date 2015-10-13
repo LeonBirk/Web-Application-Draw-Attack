@@ -61,6 +61,10 @@ io.on('connection', function (spieler) {
 		spieler.emit('beitritt', "Hallo du! Willkommen im Chat");
 		showSpielstatus(); //// zeigt dem, der dran ist, das zu zeichnende Wort an
     });
+    
+    spieler.on('zeichnung', function (vonX, vonY, nachX, nachY){
+       spieler.broadcast.emit('malen', vonX, vonY, nachX, nachY); 
+    });
 });
 
 
