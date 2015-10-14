@@ -1,139 +1,148 @@
 //chat ausblenden
-        document.getElementById("chat").style.visibility = 'hidden';
+document.getElementById("chat").style.visibility = 'hidden';
 //Ratebereich ausbleben
-        document.getElementById('rateboard').style.visibility = 'hidden';
-        
+document.getElementById('rateboard').style.visibility = 'hidden';
+
 
 //Malbereich ausbleben
-        document.getElementById('malbereich').style.visibility = 'hidden';
-        
-        
-        var socket = io();
+document.getElementById('malbereich').style.visibility = 'hidden';
 
-        //Anmeldelogik
-        var loginbutton = document.getElementById("usrlogin");
-            var usrname = document.getElementById("usr");
-        loginbutton.onclick = function () {
-            socket.emit('beitritt', usrname.value);
-        }
-        usrname.onkeypress = function (key) {
-            if (key.which == 13) {
-                loginbutton.onclick();
-            }
-        };
-        
 
-        //Chat Logik
-        var sendebutton = document.getElementById("sendebutton");
-        var text = document.getElementById("m");
-        sendebutton.onclick = function () {
-            socket.emit('chat message', text.value);
-            text.value = '';
-        }
-        text.onkeypress = function (key) {
-            if (key.which == 13) {
-                sendebutton.onclick();
-            }
-        }
+var socket = io();
 
-        socket.on('chat message', function (msg) {
-            var liste = document.getElementById("messages");
-            var child = document.createElement("li");
-            child.appendChild(document.createTextNode(msg));
+//Anmeldelogik
+var loginbutton = document.getElementById("usrlogin");
+var usrname = document.getElementById("usr");
+loginbutton.onclick = function () {
+    socket.emit('beitritt', usrname.value);
+}
+usrname.onkeypress = function (key) {
+    if (key.which == 13) {
+        loginbutton.onclick();
+    }
+};
 
-            liste.appendChild(child);
-        }); 
-        
-        
-        socket.on('beitritt', function(msg){
-         document.getElementById("chat").style.visibility = "visible";
-            document.getElementById("malbereich").style.visibility = "visible";
-			document.getElementById("rateboard").style.visibility = "visible";
-            document.getElementById("login").style.visibility = "hidden";
-            var liste = document.getElementById("messages");
-            var child = document.createElement("li");
-            child.appendChild(document.createTextNode(msg));
 
-            liste.appendChild(child);
-        });
+//Chat Logik
+var sendebutton = document.getElementById("sendebutton");
+var text = document.getElementById("m");
+sendebutton.onclick = function () {
+    socket.emit('chat message', text.value);
+    text.value = '';
+}
+text.onkeypress = function (key) {
+    if (key.which == 13) {
+        sendebutton.onclick();
+    }
+}
+
+socket.on('chat message', function (msg) {
+    var liste = document.getElementById("messages");
+    var child = document.createElement("li");
+    child.appendChild(document.createTextNode(msg));
+
+    liste.appendChild(child);
+});
+
+
+socket.on('beitritt', function (msg) {
+    document.getElementById("chat").style.visibility = "visible";
+    document.getElementById("malbereich").style.visibility = "visible";
+    document.getElementById("rateboard").style.visibility = "visible";
+    document.getElementById("login").style.visibility = "hidden";
+    var liste = document.getElementById("messages");
+    var child = document.createElement("li");
+    child.appendChild(document.createTextNode(msg));
+
+    liste.appendChild(child);
+});
+
+// Eintragen der Spieler in Liste
+socket.on('beitritt', function (namenslistenobjekt) {
+
+    var liste = document.getElementById("malerliste");
+    var child = document.createElement("li");
+    child.appendChild(document.createTextNode(namenslistenobjekt));
+    liste.appendChild(child);
+});
+
 
 //Spieler schließt den Tab
-    window.onbeforeunload = function(){
-        socket.emit('verlassen');   
-    }
-        
-		
+window.onbeforeunload = function () {
+    socket.emit('verlassen');
+}
+
+
 //Das zu erratende Wort wird angezeigt
-		socket.on('raten', function (msg) {
-            document.getElementById("rateboard").innerHTML = (msg);
-            
-        }); 
-        // Chat Logik Ende
-        // Liste der Spieler
+socket.on('raten', function (msg) {
+    document.getElementById("rateboard").innerHTML = (msg);
+
+});
+// Chat Logik Ende
+// Liste der Spieler
 
 /*
-*    Logik des Malbereiches
-*/
+ *    Logik des Malbereiches
+ */
 
-        var paint = false;
-        
-        
-        // zum initialisieren des Malbereichs
-        leinwand = document.getElementById('leinwand');
-        context = leinwand.getContext("2d");
-        
-        
-        leinwand.addEventListener("mousedown", malbeginn, false);
-        leinwand.addEventListener("mousemove", sendemalen, false);
-        leinwand.addEventListener("mouseup", malende, false);
-        leinwand.addEventListener("mouseleave", ausBildschirm, false);
+var paint = false;
 
-        var vorherigeClicks = {};
-        var clickDrag = new Array();
-        
-        function malbeginn(e){
-            e.preventDefault();
-            vorherigeClicks.mouseX = e.pageX - leinwand.offsetLeft;
-            vorherigeClicks.mouseY = e.pageY - leinwand.offsetTop;
-            
-            paint = true;
-        }
 
-        function sendemalen(e) {
-            
-            if (paint) {
-                neuX = e.pageX - leinwand.offsetLeft;
-                neuY =  e.pageY - leinwand.offsetTop;
-                socket.emit('zeichnung', vorherigeClicks.mouseX, vorherigeClicks.mouseY, neuX, neuY);
-                malen(vorherigeClicks.mouseX, vorherigeClicks.mouseY, neuX, neuY);                
-                vorherigeClicks.mouseX = neuX;
-                vorherigeClicks.mouseY = neuY;                
-            }
-            
-        }
+// zum initialisieren des Malbereichs
+leinwand = document.getElementById('leinwand');
+context = leinwand.getContext("2d");
 
-            function malende(e) {
-                paint = false;
-                
-            }
 
-            function ausBildschirm(e) {
-                paint = false;
-            }
+leinwand.addEventListener("mousedown", malbeginn, false);
+leinwand.addEventListener("mousemove", sendemalen, false);
+leinwand.addEventListener("mouseup", malende, false);
+leinwand.addEventListener("mouseleave", ausBildschirm, false);
 
-            function malen(vonX, vonY, nachX, nachY) {
-                context.clearRect(0, 0, leinwand.width, leinwand.height); // Clears the canvas
+var vorherigeClicks = {};
+var clickDrag = new Array();
 
-                context.strokeStyle = "#df4b26";
-                context.lineJoin = "round";
-                context.lineWidth = 5;
-                
-                context.moveTo(vonX, vonY);
-                context.lineTo(nachX, nachY);
-                context.stroke();
-            }
+function malbeginn(e) {
+    e.preventDefault();
+    vorherigeClicks.mouseX = e.pageX - leinwand.offsetLeft;
+    vorherigeClicks.mouseY = e.pageY - leinwand.offsetTop;
 
-            socket.on('malen', function(vonX, vonY, nachX, nachY){
-                malen(vonX, vonY, nachX, nachY);
-            });
-        
+    paint = true;
+}
+
+function sendemalen(e) {
+
+    if (paint) {
+        neuX = e.pageX - leinwand.offsetLeft;
+        neuY = e.pageY - leinwand.offsetTop;
+        socket.emit('zeichnung', vorherigeClicks.mouseX, vorherigeClicks.mouseY, neuX, neuY);
+        malen(vorherigeClicks.mouseX, vorherigeClicks.mouseY, neuX, neuY);
+        vorherigeClicks.mouseX = neuX;
+        vorherigeClicks.mouseY = neuY;
+    }
+
+}
+
+function malende(e) {
+    paint = false;
+
+}
+
+function ausBildschirm(e) {
+    paint = false;
+}
+
+function malen(vonX, vonY, nachX, nachY) {
+    context.clearRect(0, 0, leinwand.width, leinwand.height); // Clears the canvas
+
+    context.strokeStyle = "#df4b26";
+    context.lineJoin = "round";
+    context.lineWidth = 5;
+
+    context.moveTo(vonX, vonY);
+    context.lineTo(nachX, nachY);
+    context.stroke();
+}
+
+socket.on('malen', function (vonX, vonY, nachX, nachY) {
+    malen(vonX, vonY, nachX, nachY);
+});
