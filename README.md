@@ -30,7 +30,7 @@
         * Zur Rangliste machen
         * alles
         * Wer ist da
-        * box
+        * box -> Die Box ist da, den Inhalt krieg ich nicht rein ohne alles zu sprengen :( gez. Leon
     
     * Countdown Timer
         * alles

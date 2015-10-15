@@ -57,15 +57,6 @@ socket.on('beitritt', function (msg) {
     liste.appendChild(child);
 });
 
-// Eintragen der Spieler in Liste
-socket.on('beitritt', function (namenslistenobjekt) {
-
-    var liste = document.getElementById("malerliste");
-    var child = document.createElement("li");
-    child.appendChild(document.createTextNode(namenslistenobjekt));
-    liste.appendChild(child);
-});
-
 
 //Spieler schließt den Tab
 window.onbeforeunload = function () {
@@ -79,7 +70,21 @@ socket.on('raten', function (msg) {
 
 });
 // Chat Logik Ende
+
+
 // Liste der Spieler
+socket.on('listenaktualisierung', function (spielerArray){
+    var liste = document.getElementById("malerliste");
+    // leeren der Liste
+    while(liste.firstChild){        
+    liste.removeChild(liste.firstChild);
+    }
+    for (i = 0; i<spielerArray.length; i++){
+    var child = document.createElement("li");
+    child.appendChild(document.createTextNode(spielerArray[i]));
+    liste.appendChild(child);
+    }
+});
 
 /*
  *    Logik des Malbereiches

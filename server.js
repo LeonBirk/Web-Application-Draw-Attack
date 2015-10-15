@@ -38,9 +38,6 @@ io.on('connection', function (spieler) {
             }
         }
         chkGuess(msg, curSpieler);
-
-
-        console.log('Punktzahl: ' + spieler.points);
     });
 
 
@@ -56,7 +53,7 @@ io.on('connection', function (spieler) {
         alleSpieler.push(spieler);
         //console.log(spieler.id);
         // Anzeigen der Spieler in Spielerliste
-
+        spielerListeakt();
 
 
         spieler.emit('beitritt', "Hallo du! Willkommen im Chat");
@@ -133,7 +130,20 @@ function chkGuess(guess, idx) {
         curZeichnerIndex = idx;
 
         showSpielstatus();
-
+        
+        spielerListeakt();
 
     }
+
+}
+function spielerListeakt() {
+    var spielerArray = new Array();
+    
+    
+    for (var i = 0; i < alleSpieler.length; i++) {
+        
+    var temp = '' + alleSpieler[i].name + '   ' + alleSpieler[i].points;
+    spielerArray.push(temp);
+        
+    } io.sockets.emit ('listenaktualisierung', spielerArray);
 }
