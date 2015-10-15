@@ -2,8 +2,8 @@
 document.getElementById("chat").style.visibility = 'hidden';
 //Ratebereich ausbleben
 document.getElementById('rateboard').style.visibility = 'hidden';
-
-
+// Spielerliste ausblenden
+document.getElementById('malerlistenbereich').style.visibility = 'hidden';
 //Malbereich ausbleben
 document.getElementById('malbereich').style.visibility = 'hidden';
 
@@ -49,6 +49,7 @@ socket.on('beitritt', function (msg) {
     document.getElementById("chat").style.visibility = "visible";
     document.getElementById("malbereich").style.visibility = "visible";
     document.getElementById("rateboard").style.visibility = "visible";
+    document.getElementById("malerlistenbereich").style.visibility = 'visible';
     document.getElementById("login").style.visibility = "hidden";
     var liste = document.getElementById("messages");
     var child = document.createElement("li");

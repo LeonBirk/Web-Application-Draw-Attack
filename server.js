@@ -79,7 +79,6 @@ io.on('connection', function (spieler) {
 });
 
 
-
 http.listen(3000, function () {
     console.log('listening on *:3000');
 });
@@ -137,8 +136,7 @@ function chkGuess(guess, idx) {
 
 }
 function spielerListeakt() {
-    var spielerArray = new Array();
-    
+    var spielerArray = new Array(); 
     
     for (var i = 0; i < alleSpieler.length; i++) {
         
