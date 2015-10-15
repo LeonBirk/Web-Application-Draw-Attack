@@ -14,7 +14,7 @@ body {
     height: auto;
     max-height: 100px;
     overflow: auto;
-    position: absolute;
+    position: absolute; 
     top: 440px;
     left: 20px;
     border: 2px solid;
