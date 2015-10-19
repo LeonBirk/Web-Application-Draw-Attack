@@ -58,6 +58,14 @@ socket.on('beitritt', function (msg) {
     liste.appendChild(child);
 });
 
+// Reinigen der Leinwand
+socket.on('reinigen', function(){
+   var leinwand = document.getElementById("leinwand");
+    context.closePath();
+    context.beginPath();    
+    context.clearRect(0, 0, leinwand.width, leinwand.height);
+});
+
 
 //Spieler schließt den Tab
 window.onbeforeunload = function () {
@@ -138,7 +146,7 @@ function ausBildschirm(e) {
 }
 
 function malen(vonX, vonY, nachX, nachY) {
-    context.clearRect(0, 0, leinwand.width, leinwand.height); // Clears the canvas
+   context.clearRect(0, 0, leinwand.width, leinwand.height); // Clears the canvas
 
     context.strokeStyle = "#df4b26";
     context.lineJoin = "round";

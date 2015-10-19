@@ -132,6 +132,7 @@ function chkGuess(guess, idx) {
         showSpielstatus();
         
         spielerListeakt();
+        io.emit('reinigen'); //den Clients die Anweisung geben die Leinwand zu clearen
 
     }
 
