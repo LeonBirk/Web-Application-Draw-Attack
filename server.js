@@ -89,7 +89,7 @@ currentWordIndex = randIndex();
 
 // Datei mit Begriffen wird eingelesen
 function readArray(dateiname) {
-    words = fs.readFileSync(dateiname).toString('utf-8').split("\r\n");
+    words = fs.readFileSync(dateiname).toString('utf-8').split("\n");
 }
 
 
@@ -123,6 +123,7 @@ function chkGuess(guess, idx) {
         var nachricht = "Spieler " + alleSpieler[idx].name + " hat den Begriff " + words[currentWordIndex] + " erraten.";
         io.emit('chat message', nachricht);
         alleSpieler[idx].points++; ////Gewinnpunkt wird zugefügt
+		alleSpieler[curZeichnerIndex].points++; //der gute Zeichner kriegt auch nen Punkt
         currentWordIndex = randIndex();
         alleSpieler[curZeichnerIndex].zustand = 0;
         alleSpieler[idx].zustand = 1;
@@ -144,5 +145,6 @@ function spielerListeakt() {
     spielerArray.push(temp);    
     } 
     spielerArray.sort;
+	
     io.sockets.emit ('listenaktualisierung', spielerArray);
 }

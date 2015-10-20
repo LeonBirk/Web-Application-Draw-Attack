@@ -1,5 +1,9 @@
 # Web-Application-Draw-Attack
 * TO DO
+
+    * Allgemeines
+        * Header/Footer (Mit Logog und so wäre cool)
+        * Hintergrund
         
     * Spieler als Objekt (highest prio)
         * Zustand
@@ -28,7 +32,11 @@
         
     * Rangliste / Userliste
         * Zur Rangliste machen
+<<<<<<< HEAD
 
+=======
+        * bei 350px (höhe) wird liste abgeschnitten (workaround)
+>>>>>>> origin/master
     
     * Countdown Timer
         * alles
