@@ -94,11 +94,23 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 #header {
  height: 30px;
        background-image: url(GuessWhatLogoYeah.PNG);
+}
+
+#main{
+    flex: 1;
+    background-color: cornsilk;
+    width: 90%;
+}
+
+#footer{
+    height: 30px;
+    background-color: aqua;
 }
 
 #messages {
