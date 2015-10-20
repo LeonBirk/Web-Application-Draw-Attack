@@ -89,7 +89,7 @@ currentWordIndex = randIndex();
 
 // Datei mit Begriffen wird eingelesen
 function readArray(dateiname) {
-    words = fs.readFileSync(dateiname).toString('utf-8').split("\r\n");
+    words = fs.readFileSync(dateiname).toString('utf-8').split("\n");
 }
 
 
