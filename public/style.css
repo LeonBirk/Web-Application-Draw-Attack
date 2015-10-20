@@ -46,7 +46,7 @@ body {
     font-weight: bold;
     background: #121212;
     border: #2d2d2d solid 2%;
-    margin-bottom: 5%;
+    margin-bottom: 4%;
     font-family: Arial;
 }
 
@@ -56,8 +56,8 @@ body {
     padding-top: 2%;
     padding-bottom: 2%;
     padding-left: 4%;
-    margin-left: 10%;
-    margin-bottom: 5%;
+    margin-left: 20%;
+    margin-bottom: 3%;
     border: none;
     border-top: #0b0b0b solid 2%;
     border-bottom: #353535 2% solid;
@@ -68,26 +68,26 @@ body {
 }
 
 #login button {
-    width: 200px;
+    width: 40%;
     display: block;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 2%;
+    padding-bottom: 2%;
     border-radius: 6px;
     border: none;
-    border-top: #4eb2a8 1px solid;
-    border-bottom: #161616 1px solid;
+    border-top: #4eb2a8 2% solid;
+    border-bottom: #161616 2% solid;
     background: #349e92;
     text-align: center;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 1em;
     font-weight: bold;
     color: #FFF;
     text-shadow: 0 -1px #1d7464, 0 1px #7bb8b3;
     font-family: Arial;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-bottom: 4%;
+    
 }
 
 #rahmen {
