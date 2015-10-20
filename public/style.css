@@ -107,9 +107,8 @@ body {
 
 #header {
     height: 120px;
-    background-image: url(GuessWhatLogoYeah.jpg);
+    background-image: url(LogoOhneSchrift_gespiegelt.png);
     background-size: contain;
-    background-repeat: no-repeat;
     background-position: top;
 }
 
