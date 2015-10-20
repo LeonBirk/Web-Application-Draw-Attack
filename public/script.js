@@ -7,8 +7,8 @@ document.getElementById('malerlistenbereich').style.visibility = 'hidden';
 //Malbereich ausbleben
 document.getElementById('malbereich').style.visibility = 'hidden';
 
-
 var socket = io();
+initLeinwand();
 
 //Anmeldelogik
 var loginbutton = document.getElementById("usrlogin");
@@ -161,7 +161,8 @@ socket.on('malen', function (vonX, vonY, nachX, nachY) {
     malen(vonX, vonY, nachX, nachY);
 });
 
-window.onresize = function(event) { 
+window.onresize = initLeinwand();
+function initLeinwand() { 
     var buffer = document.getElementById('buffer');
     var w = document.getElementById("malbereich").clientWidth; 
     var h = document.getElementById("malbereich").clientHeight;
