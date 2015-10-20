@@ -36,12 +36,14 @@ text.onkeypress = function (key) {
     }
 }
 
-socket.on('chat message', function (msg) {
+socket.on('chat message', function (msg) { 
     var liste = document.getElementById("messages");
     var child = document.createElement("li");
     child.appendChild(document.createTextNode(msg));
-
     liste.appendChild(child);
+    // Zum Ende der Chat-Liste scrollen
+    liste= document.getElementById('messages');
+    liste.scrollTop = liste.scrollHeight;
 });
 
 

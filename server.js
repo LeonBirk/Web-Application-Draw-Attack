@@ -25,9 +25,9 @@ app.get('/', function (req, res) {
 io.on('connection', function (spieler) {
 
     //Senden von Chatnachrichten
-    spieler.on('chat message', function (msg) {
+    spieler.on('chat message', function (msg) {        
+        console.log(spieler.name + " hat eine Nachricht gesendet:"); // Test ob Namenvergabe funktioniert
         console.log(msg);
-        console.log(spieler.name + " hat eine Nachricht gesendet"); // Test ob Namenvergabe funktioniert
         var curSpieler;
         for (var i = 0; i < alleSpieler.length; i++) {
             if (alleSpieler[i].id == spieler.id) {
