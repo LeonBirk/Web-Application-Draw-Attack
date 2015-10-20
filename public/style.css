@@ -20,6 +20,18 @@ body {
     background-position: top;
 }
 
+#loginrahmen{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-image: url(GuessWhatLogoYeah.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-color: #FAFAFC;
+}
+
+
 #login {
     position: absolute;
     width: 30%;
