@@ -13,12 +13,10 @@ body {
     font: 13px Helvetica, Arial;
     height: 100%;
     width: 100%;
-    overflow:scroll;
- 
-   
+    overflow: scroll;
 }
 
-#loginrahmen{
+#loginrahmen {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -28,7 +26,6 @@ body {
     background-position: top;
     background-color: #FAFAFC;
 }
-
 
 #login {
     position: absolute;
@@ -41,13 +38,10 @@ body {
     margin-left: auto;
     margin-right: auto;
     left: 0;
-    right:0;
+    right: 0;
     margin-top: 35%;
     min-height: 165px;
     min-width: 200px;
-    
-    
-   
 }
 
 #login #Anmeldetitel {
@@ -119,7 +113,7 @@ body {
     background-position: top;
 }
 
-#main{
+#main {
     flex: 1;
     background-color: #FAFAFC;
     width: 90%;
@@ -127,7 +121,7 @@ body {
     margin-right: auto;
 }
 
-#footer{
+#footer {
     height: 30px;
     background-color: aqua;
 }
@@ -155,14 +149,13 @@ body {
     background: #eee;
 }
 
-#chat{
+#chat {
     padding: 3px;
     bottom: 10;
     width: 55%;
     height: 20%;
     margin-left: 5%;
     margin-top: 0%;
-
 }
 
 #sendefenster {
@@ -177,8 +170,6 @@ body {
     padding: 2%;
     width: calc(100% - 90px);
     margin-right: .5%;
-    
-    
 }
 
 #sendefenster button {
@@ -197,8 +188,6 @@ body {
     color: #FFF;
     text-shadow: 0 -1px #1d7464, 0 1px #7bb8b3;
     font-family: Arial;
-    
-
 }
 
 #malerlistenbereich {
@@ -212,7 +201,6 @@ body {
     margin-top: 5%;
     position: absolute;
     float: right;
-    
 }
 
 #malerliste {
@@ -224,7 +212,7 @@ body {
     padding: 5px 10px;
 }
 
-#malbereich{
+#malbereich {
     margin-right: 30%;
     margin-left: 30%;
     width: 40%;
@@ -233,13 +221,9 @@ body {
     border-color: chartreuse;
     margin-top: 5%;
     padding: 0%;
-    
 }
 
-
-
 #rateboard {
-    
     width: 20%;
     height: 10%;
     overflow: hidden;

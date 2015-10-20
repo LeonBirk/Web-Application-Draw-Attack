@@ -36,7 +36,7 @@ text.onkeypress = function (key) {
     }
 }
 
-socket.on('chat message', function (msg) { 
+socket.on('chat message', function (msg) {
     var liste = document.getElementById("messages");
     var child = document.createElement("li");
     child.appendChild(document.createTextNode(msg));
@@ -60,10 +60,10 @@ socket.on('beitritt', function (msg) {
 });
 
 // Reinigen der Leinwand
-socket.on('reinigen', function(){
-   var leinwand = document.getElementById("leinwand");
+socket.on('reinigen', function () {
+    var leinwand = document.getElementById("leinwand");
     context.closePath();
-    context.beginPath();    
+    context.beginPath();
     context.clearRect(0, 0, leinwand.width, leinwand.height);
 });
 
@@ -83,16 +83,16 @@ socket.on('raten', function (msg) {
 
 
 // Liste der Spieler
-socket.on('listenaktualisierung', function (spielerArray){
+socket.on('listenaktualisierung', function (spielerArray) {
     var liste = document.getElementById("malerliste");
     // leeren der Liste
-    while(liste.firstChild){        
-    liste.removeChild(liste.firstChild);
+    while (liste.firstChild) {
+        liste.removeChild(liste.firstChild);
     }
-    for (var i = 0; i<spielerArray.length; i++){
-    var child = document.createElement("li");
-    child.appendChild(document.createTextNode(spielerArray[i]));
-    liste.appendChild(child);
+    for (var i = 0; i < spielerArray.length; i++) {
+        var child = document.createElement("li");
+        child.appendChild(document.createTextNode(spielerArray[i]));
+        liste.appendChild(child);
     }
 });
 
@@ -162,9 +162,10 @@ socket.on('malen', function (vonX, vonY, nachX, nachY) {
 });
 
 window.onresize = initLeinwand();
-function initLeinwand() { 
+
+function initLeinwand() {
     var buffer = document.getElementById('buffer');
-    var w = document.getElementById("malbereich").clientWidth; 
+    var w = document.getElementById("malbereich").clientWidth;
     var h = document.getElementById("malbereich").clientHeight;
     buffer.width = w;
     buffer.height = h;

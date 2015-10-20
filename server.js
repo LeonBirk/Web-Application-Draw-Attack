@@ -25,7 +25,7 @@ app.get('/', function (req, res) {
 io.on('connection', function (spieler) {
 
     //Senden von Chatnachrichten
-    spieler.on('chat message', function (msg) {        
+    spieler.on('chat message', function (msg) {
         console.log(spieler.name + " hat eine Nachricht gesendet:"); // Test ob Namenvergabe funktioniert
         console.log(msg);
         var curSpieler;
@@ -102,19 +102,19 @@ function randIndex() {
 
 //	function showSpielerstatus: zeigt nur dem Zeichnenden das Wort an
 function showSpielstatus() {
-    try{
-    for (var i = 0; i < alleSpieler.length; i++) {
-        if (alleSpieler[i].zustand == 1 && alleSpieler.length > 1) {
-            io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Zeichne den Begriff: " + words[currentWordIndex]);
-        } else if (alleSpieler[i].zustand == 1 && alleSpieler.length == 1) {
-            io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Warte auf weitere Mitspieler. ")
-        } else if (alleSpieler[i].zustand == 0 && alleSpieler.length > 1) {
+    try {
+        for (var i = 0; i < alleSpieler.length; i++) {
+            if (alleSpieler[i].zustand == 1 && alleSpieler.length > 1) {
+                io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Zeichne den Begriff: " + words[currentWordIndex]);
+            } else if (alleSpieler[i].zustand == 1 && alleSpieler.length == 1) {
+                io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Warte auf weitere Mitspieler. ")
+            } else if (alleSpieler[i].zustand == 0 && alleSpieler.length > 1) {
 
-            io.sockets.connected[alleSpieler[i].id].emit('raten', "Du rätst ");
+                io.sockets.connected[alleSpieler[i].id].emit('raten', "Du rätst ");
+            }
+
         }
-
-    }
-    }catch(e){
+    } catch (e) {
         console.log("error! :D");
     }
 }
@@ -127,29 +127,31 @@ function chkGuess(guess, idx) {
         var nachricht = "Spieler " + alleSpieler[idx].name + " hat den Begriff " + words[currentWordIndex] + " erraten.";
         io.emit('chat message', nachricht);
         alleSpieler[idx].points++; ////Gewinnpunkt wird zugefügt
-		if(alleSpieler.length>2){
-		alleSpieler[curZeichnerIndex].points++;}; //der gute Zeichner kriegt auch nen Punkt
+        if (alleSpieler.length > 2) {
+            alleSpieler[curZeichnerIndex].points++;
+        }; //der gute Zeichner kriegt auch nen Punkt
         currentWordIndex = randIndex();
         alleSpieler[curZeichnerIndex].zustand = 0;
         alleSpieler[idx].zustand = 1;
         curZeichnerIndex = idx;
 
         showSpielstatus();
-        
+
         spielerListeakt();
         io.emit('reinigen'); //den Clients die Anweisung geben die Leinwand zu clearen
 
     }
 
 }
+
 function spielerListeakt() {
-    var spielerArray = new Array(); 
-    
+    var spielerArray = new Array();
+
     for (var i = 0; i < alleSpieler.length; i++) {
-        
-    var temp = '' + alleSpieler[i].name + '   ' + alleSpieler[i].points;
-    spielerArray.push(temp);    
-    } 
-    	
-    io.sockets.emit ('listenaktualisierung', spielerArray);
+
+        var temp = '' + alleSpieler[i].name + '   ' + alleSpieler[i].points;
+        spielerArray.push(temp);
+    }
+
+    io.sockets.emit('listenaktualisierung', spielerArray);
 }
