@@ -84,10 +84,10 @@ body {
     color: #FFF;
     text-shadow: 0 -1px #1d7464, 0 1px #7bb8b3;
     font-family: Arial;
-    margin-right: 30%;
-    margin-left: 30%;
-    margin-bottom: 4%;
-    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 #rahmen {
@@ -99,7 +99,6 @@ body {
 
 #messages {
     width: auto;
-    max-width: 100%;
     height: auto;
     max-height: 300px;
     overflow: auto;
@@ -111,18 +110,36 @@ body {
 }
 
 #messages li {
-    padding: 5px 10px;
+    width: 95%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 2%;
 }
 
 #messages li:nth-child(odd) {
     background: #eee;
 }
 
-#sendefenster {
-    background: #000;
+#chat{
+    background: #1e1e1e;
     padding: 3px;
     bottom: 0;
-    width: 100%;
+    width: 55%;
+    height: 20%;
+    margin-left: 5%;
+    margin-top: 0%;
+
+}
+
+#sendefenster {
+    background: #1e1e1e;
+    padding: 3px;
+    bottom: 0;
+    width: 55%;
+    height: 20%;
+    margin-left: 0%;
+    margin-top: 25%;
+    position: absolute;
 }
 
 #sendefenster input {
@@ -140,13 +157,17 @@ body {
 }
 
 #malerlistenbereich {
-    padding: 0;
     width: 15%;
     height: auto;
     max-height: 350px;
-    border: 3px green solid;
+    border: 3px chartreuse solid;
     overflow: hidden;
-    float: right
+    margin-left: 73%;
+    margin-right: 7%;
+    margin-top: 5%;
+    position: absolute;
+    float: right;
+    
 }
 
 #malerliste {
@@ -158,22 +179,31 @@ body {
     padding: 5px 10px;
 }
 
-#malbereich {
-    margin-right: 20px;
-    margin-bottom: 20px;
-    width: 400px;
-    height: 400px;
-    border: 2px solid;
-    border-color: darkviolet;
-    float: left;
+#malbereich{
+    margin-right: 30%;
+    margin-left: 30%;
+    width: 40%;
+    height: 50%;
+    border: solid 3px;
+    border-color: chartreuse;
+    margin-top: 5%;
+    padding: 0%;
+    
 }
 
+#leinwand{
+    width: 100%;
+    height: 100%;
+}
+
+
 #rateboard {
-    float: right;
-    clear: right;
-    width: 300px;
-    height: 50px;
+    
+    width: 20%;
+    height: 10%;
     overflow: hidden;
-    margin-top: 10px;
-    border: 2px solid;
+    margin-top: 5%;
+    border: grey solid 2px;
+    position: absolute;
+    float: left;
 }
