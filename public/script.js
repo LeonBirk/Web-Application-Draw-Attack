@@ -147,7 +147,6 @@ function ausBildschirm(e) {
 }
 
 function malen(vonX, vonY, nachX, nachY) {
-   context.clearRect(0, 0, leinwand.width, leinwand.height); // Clears the canvas
 
     context.strokeStyle = "#df4b26";
     context.lineJoin = "round";
@@ -161,3 +160,15 @@ function malen(vonX, vonY, nachX, nachY) {
 socket.on('malen', function (vonX, vonY, nachX, nachY) {
     malen(vonX, vonY, nachX, nachY);
 });
+
+window.onresize = function(event) { 
+    var buffer = document.getElementById('buffer');
+    var w = document.getElementById("malbereich").clientWidth; 
+    var h = document.getElementById("malbereich").clientHeight;
+    buffer.width = w;
+    buffer.height = h;
+    buffer.getContext('2d').drawImage(leinwand, 0, 0);
+    leinwand.width = w;
+    leinwand.height = h;
+    leinwand.getContext('2d').drawImage(buffer, 0, 0);
+}
