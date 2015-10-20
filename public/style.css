@@ -15,9 +15,7 @@ body {
     width: 100%;
     overflow:scroll;
  
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: top;
+   
 }
 
 #loginrahmen{
@@ -110,13 +108,16 @@ body {
 }
 
 #header {
- height: 30px;
-       background-image: url(GuessWhatLogoYeah.PNG);
+    height: 120px;
+    background-image: url(GuessWhatLogoYeah.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
 }
 
 #main{
     flex: 1;
-    background-color: cornsilk;
+    background-color: #FAFAFC;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
