@@ -89,7 +89,7 @@ socket.on('listenaktualisierung', function (spielerArray){
     while(liste.firstChild){        
     liste.removeChild(liste.firstChild);
     }
-    for (i = 0; i<spielerArray.length; i++){
+    for (var i = 0; i<spielerArray.length; i++){
     var child = document.createElement("li");
     child.appendChild(document.createTextNode(spielerArray[i]));
     liste.appendChild(child);

@@ -146,7 +146,6 @@ function spielerListeakt() {
     var temp = '' + alleSpieler[i].name + '   ' + alleSpieler[i].points;
     spielerArray.push(temp);    
     } 
-    spielerArray.sort;
-	
+    	
     io.sockets.emit ('listenaktualisierung', spielerArray);
 }
