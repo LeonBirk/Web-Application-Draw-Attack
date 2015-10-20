@@ -38,9 +38,13 @@ body {
     background: #1e1e1e;
     border-radius: 6px;
     box-shadow: 0px 0px 50px rgba(0, 0, 0, .8);
-    margin-left: 35%;
-    margin-right: 35%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right:0;
     margin-top: 35%;
+    min-height: 165px;
+    min-width: 200px;
     
     
    
@@ -56,7 +60,7 @@ body {
     font-weight: bold;
     background: #121212;
     border: #2d2d2d solid 2%;
-    margin-bottom: 4%;
+    margin-bottom: 25px;
     font-family: Arial;
 }
 
@@ -78,7 +82,7 @@ body {
 }
 
 #login button {
-    width: 40%;
+    width: 80px;
     display: block;
     padding-top: 2%;
     padding-bottom: 2%;
@@ -96,7 +100,7 @@ body {
     font-family: Arial;
     margin-left: auto;
     margin-right: auto;
-    margin-top: auto;
+    margin-top: 20px;
     margin-bottom: auto;
 }
 
@@ -121,7 +125,6 @@ body {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    overflow: hidden;
 }
 
 #footer{
@@ -171,16 +174,31 @@ body {
 
 #sendefenster input {
     border: 0;
-    padding: 10px;
-    width: 90%;
+    padding: 2%;
+    width: calc(100% - 90px);
     margin-right: .5%;
+    
+    
 }
 
 #sendefenster button {
-    width: 9%;
-    background: rgb(250, 224, 255);
+    width: 80px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 6px;
     border: none;
-    padding: 10px;
+    border-top: #4eb2a8 2% solid;
+    border-bottom: #161616 2% solid;
+    background: #349e92;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+    color: #FFF;
+    text-shadow: 0 -1px #1d7464, 0 1px #7bb8b3;
+    font-family: Arial;
+    
+
 }
 
 #malerlistenbereich {
