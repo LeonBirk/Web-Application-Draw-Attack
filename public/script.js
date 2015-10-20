@@ -51,7 +51,7 @@ socket.on('beitritt', function (msg) {
     document.getElementById("malbereich").style.visibility = "visible";
     document.getElementById("rateboard").style.visibility = "visible";
     document.getElementById("malerlistenbereich").style.visibility = 'visible';
-    document.getElementById("login").style.visibility = "hidden";
+    document.getElementById("loginrahmen").style.visibility = "hidden";
     var liste = document.getElementById("messages");
     var child = document.createElement("li");
     child.appendChild(document.createTextNode(msg));

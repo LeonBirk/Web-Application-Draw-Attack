@@ -20,6 +20,17 @@ body {
     background-position: top;
 }
 
+#loginrahmen{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-image: url(GuessWhatLogoYeah.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-color: #FAFAFC;
+}
+
 #login {
     position: absolute;
     width: 30%;
@@ -32,8 +43,6 @@ body {
     margin-right: 35%;
     margin-top: 35%;
     
-    
-   
 }
 
 #login #Anmeldetitel {
@@ -98,13 +107,16 @@ body {
 }
 
 #header {
- height: 30px;
-       background-image: url(GuessWhatLogoYeah.PNG);
+    height: 50px;
+    background-image: url(GuessWhatLogoYeah.PNG);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #main{
     flex: 1;
-    background-color: cornsilk;
+    background-color: lightpink;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
