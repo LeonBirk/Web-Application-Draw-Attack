@@ -6,62 +6,65 @@
 
 html {
     height: 100%;
+    width: 100%;
 }
 
 body {
     font: 13px Helvetica, Arial;
     height: 100%;
+    width: 100%;
+    overflow:scroll;
+    background-image: url(GuessWhatLogoYeah.PNG);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
 }
 
 #login {
     position: absolute;
-    width: 300px;
-    height: 230px;
+    width: 30%;
+    height: 20%;
     overflow: hidden;
     background: #1e1e1e;
     border-radius: 6px;
     box-shadow: 0px 0px 50px rgba(0, 0, 0, .8);
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 35%;
+    
+    
+   
 }
 
 #login #Anmeldetitel {
-    width: 300px;
-    padding-top: 13px;
-    padding-bottom: 13px;
-    font-size: 15px;
+    width: 100%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 1.2em;
     text-align: center;
-    color: #bfbfbf;
+    color: white;
     font-weight: bold;
     background: #121212;
-    border: #2d2d2d solid 1px;
-    margin-bottom: 30px;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
+    border: #2d2d2d solid 2%;
+    margin-bottom: 5%;
     font-family: Arial;
 }
 
 #login input {
-    width: 200px;
-    font-size: 12px;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    padding-left: 40px;
-    margin-left: 50px;
-    margin-bottom: 30px;
+    width: 60%;
+    font-size: 1em;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 4%;
+    margin-left: 10%;
+    margin-bottom: 5%;
     border: none;
-    border-top: #0b0b0b solid 1px;
-    border-bottom: #353535 1px solid;
+    border-top: #0b0b0b solid 2%;
+    border-bottom: #353535 2% solid;
     color: #bfbfbf;
     background: #141414;
     outline: none;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    border-radius: 6px;
 }
 
 #login button {
@@ -92,6 +95,7 @@ body {
     height: 95%;
     width: 90%;
 }
+
 
 #messages {
     width: auto;
