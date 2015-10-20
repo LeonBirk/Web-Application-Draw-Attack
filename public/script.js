@@ -42,7 +42,6 @@ socket.on('chat message', function (msg) {
     child.appendChild(document.createTextNode(msg));
     liste.appendChild(child);
     // Zum Ende der Chat-Liste scrollen
-    liste= document.getElementById('messages');
     liste.scrollTop = liste.scrollHeight;
 });
 
