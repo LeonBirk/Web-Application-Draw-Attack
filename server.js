@@ -102,6 +102,7 @@ function randIndex() {
 
 //	function showSpielerstatus: zeigt nur dem Zeichnenden das Wort an
 function showSpielstatus() {
+    try{
     for (var i = 0; i < alleSpieler.length; i++) {
         if (alleSpieler[i].zustand == 1 && alleSpieler.length > 1) {
             io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Zeichne den Begriff: " + words[currentWordIndex]);
@@ -112,6 +113,9 @@ function showSpielstatus() {
             io.sockets.connected[alleSpieler[i].id].emit('raten', "Du rätst ");
         }
 
+    }
+    }catch(e){
+        console.log("error! :D");
     }
 }
 
