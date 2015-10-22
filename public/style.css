@@ -107,10 +107,11 @@ body {
 
 #header {
     height: 120px;
-    background-image: url(LogoOhneSchrift_gespiegelt.png);
+    background-image: url(LogoOhneSchrift_gespiegelt_gereiht.png);
     background-size: contain;
     background-position: top;
 }
+
 
 #main {
     flex: 1;
@@ -220,6 +221,11 @@ body {
     border-color: chartreuse;
     margin-top: 5%;
     padding: 0%;
+}
+
+#leinwand{
+    width: 100%;
+    height: 100%;
 }
 
 #rateboard {
