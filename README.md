@@ -29,6 +29,7 @@
         * Größe erst nachträglich über script definieren
         * Rahmen, schön usw.
         * Löschen, wenn geraten
+        * Clear Button, der die Leinwand leert --- erledigt
         
     * Rangliste / Userliste
         * Zur Rangliste machen

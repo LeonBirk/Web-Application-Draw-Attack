@@ -76,6 +76,11 @@ io.on('connection', function (spieler) {
         }
 
     });
+    
+    // Reinigen der Leinwand, wenn Button geklickt wird
+    spieler.on('leinwandReinigen', function () {
+        io.emit('reinigen');
+    });
 });
 
 
@@ -89,7 +94,7 @@ currentWordIndex = randIndex();
 
 // Datei mit Begriffen wird eingelesen
 function readArray(dateiname) {
-    words = fs.readFileSync(dateiname).toString('utf-8').split("\n");
+    words = fs.readFileSync(dateiname).toString('utf-8').split("\r\n");
 }
 
 
@@ -143,6 +148,8 @@ function chkGuess(guess, idx) {
     }
 
 }
+
+
 
 function spielerListeakt() {
     var spielerArray = new Array();

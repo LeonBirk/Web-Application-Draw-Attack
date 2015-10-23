@@ -67,6 +67,9 @@ socket.on('reinigen', function () {
     context.beginPath();
     context.clearRect(0, 0, leinwand.width, leinwand.height);
 });
+// Leinwand reinigen nach Click
+var clearButton1 = document.getElementById ("clearButton");
+clearButton1.onclick = function () { socket.emit('leinwandReinigen')};
 
 
 //Spieler schließt den Tab
