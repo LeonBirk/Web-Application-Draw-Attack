@@ -95,7 +95,7 @@ socket.on('listenaktualisierung', function (spielerArray) {
     }
     for (var i = 0; i < spielerArray.length; i++) {
         var child = document.createElement("li");
-        child.appendChild(document.createTextNode(spielerArray[i]));
+        child.appendChild(document.createTextNode(spielerArray[i].name + '            '  + spielerArray[i].points));
         liste.appendChild(child);
     }
 });

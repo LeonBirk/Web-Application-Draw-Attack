@@ -156,9 +156,22 @@ function spielerListeakt() {
 
     for (var i = 0; i < alleSpieler.length; i++) {
 
-        var temp = '' + alleSpieler[i].name + '   ' + alleSpieler[i].points;
+        var temp = {
+            name: alleSpieler[i].name,
+            points: alleSpieler[i].points
+        }
         spielerArray.push(temp);
     }
-
+    spielerArray.sort(sortierfunktion);
     io.sockets.emit('listenaktualisierung', spielerArray);
 }
+
+function sortierfunktion(a, b) {
+    if (a.points < b.points) {
+        return 1;
+    }
+    if (a.points > b.points) {
+        return -11;
+    }
+    return 0;
+};

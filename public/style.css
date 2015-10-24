@@ -233,6 +233,8 @@ body {
 	border-image-source: url('Listentafel.jpg');
 	border-image-slice: 50 65;
     background-image: url('Hintergrund_Tafel.jpg');
+    font-family: 'Kreideschrift', 'sans-serif';
+    color: white;
 }
 
 #malerliste {
