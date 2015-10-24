@@ -6,6 +6,8 @@ document.getElementById('rateboard').style.visibility = 'hidden';
 document.getElementById('malerlistenbereich').style.visibility = 'hidden';
 //Malbereich ausbleben
 document.getElementById('malbereich').style.visibility = 'hidden';
+//Farbpalette ausblenden
+document.getElementById('farben').style.visibility = 'hidden';
 
 var socket = io();
 initLeinwand();
@@ -52,6 +54,7 @@ socket.on('beitritt', function (msg) {
     document.getElementById("malbereich").style.visibility = "visible";
     document.getElementById("rateboard").style.visibility = "visible";
     document.getElementById("malerlistenbereich").style.visibility = 'visible';
+    document.getElementById('farben').style.visibility = 'visible';
     document.getElementById("loginrahmen").style.visibility = "hidden";
     var liste = document.getElementById("messages");
     var child = document.createElement("li");
