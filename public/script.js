@@ -153,12 +153,21 @@ function ausBildschirm(e) {
     paint = false;
 }
 
-function malen(vonX, vonY, nachX, nachY) {
+var farbe = "black";
 
-    context.strokeStyle = "#df4b26";
+function farbuebergabe (buttonnr){
+        var element = document.getElementById(buttonnr);
+        var cssdaten = window.getComputedStyle(element, null);
+        farbe = cssdaten.backgroundColor;
+}
+
+
+function malen(vonX, vonY, nachX, nachY) {
+    /*var farbe = document.getElementsByClassName('farbbutton').addEventListener;*/
+    
+    context.strokeStyle = farbe;
     context.lineJoin = "round";
     context.lineWidth = 5;
-
     context.moveTo(vonX, vonY);
     context.lineTo(nachX, nachY);
     context.stroke();
