@@ -229,7 +229,7 @@ body {
     margin-top: 5%;
     float: left;
     border: 20px solid #ccb089;
-	border-image-source: url('Listentafel.jpg');
+	border-image-source: url('Wooden_Frame.jpg');
 	border-image-slice: 50 65;
     background-image: url('Hintergrund_Tafel.jpg');
     font-family: 'Kreideschrift', 'sans-serif';
@@ -245,6 +245,22 @@ body {
 
 #malerliste li {
     padding: 5px 10px;
+}
+
+#rang{
+    text-align: center;
+}
+
+#spieler{
+    text-align: left;
+    display: inline-block;
+    margin-right: 20%;
+    margin-left: 5%
+}
+
+#punkte{
+    text-align: right;
+    display: inline-block;
 }
 
 #farben{
@@ -305,7 +321,7 @@ body {
 #radierer{
     width: 100%;
     height: auto;
-    background-color: white;
+    background-color: #FAFAFC;
 }
 
 #malbereich {
