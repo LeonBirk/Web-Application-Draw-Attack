@@ -98,9 +98,20 @@ socket.on('listenaktualisierung', function (spielerArray) {
     }
     for (var i = 0; i < spielerArray.length; i++) {
         var child = document.createElement("li");
-        child.appendChild(document.createTextNode(spielerArray[i].name + '            '  + spielerArray[i].points));
+        child.appendChild(document.createTextNode(spielerArray[i].name));
         liste.appendChild(child);
     }
+    var liste2 = document.getElementById("punkteliste");
+    // Liste leeren
+    while (liste2.firstChild) {
+        liste2.removeChild(liste2.firstChild);
+    }
+    for (var i = 0; i < spielerArray.length; i++) {
+        var child2 = document.createElement("li");
+        child2.appendChild(document.createTextNode(spielerArray[i].points));
+        liste2.appendChild(child2);
+    }
+    
 });
 
 /*

@@ -241,9 +241,22 @@ body {
     list-style-position: inside;
     font-family: 'Kreideschrift', 'sans-serif';
     color: white;
+    float: left;
+    max-width: 80%;
 }
 
 #malerliste li {
+    padding: 5px 10px;
+}
+
+#punkteliste {
+    list-style-type: none;
+    font-family: 'Kreideschrift', 'sans-serif';
+    color: white;
+    float: right;
+}
+
+#punkteliste li {
     padding: 5px 10px;
 }
 
@@ -252,14 +265,14 @@ body {
 }
 
 #spieler{
-    text-align: left;
+    float: left;
     display: inline-block;
     margin-right: 20%;
     margin-left: 5%
 }
 
 #punkte{
-    text-align: right;
+    float: right;
     display: inline-block;
 }
 

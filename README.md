@@ -2,17 +2,9 @@
 * TO DO
 
     * Allgemeines
-        * Header/Footer (Mit Logog und so wäre cool)
+        * Header/Footer (Mit Logo und so wäre cool)
         * Hintergrund
         
-    * Spieler als Objekt (highest prio)
-        * Zustand
-        * Name
-        * usw.
-        
-    * Anmeldung
-        * soweit alles gelöst
-    
     * Chat
         * schön
         * box
@@ -22,17 +14,22 @@
         
     * Leinwand
         * regelung wer sendet, wer nicht
-        * Farben
+        * Farbenänderungen sollen nur neue Striche betreffen
+        * Farbenänderung an andere senden
         * Positionierung
         * Sperren für nichtmaler
         * Kommentare im Code
         * Größe erst nachträglich über script definieren
-        * Rahmen, schön usw.
-        * Löschen, wenn geraten
-        * Clear Button, der die Leinwand leert --- erledigt
         
-    * Rangliste / Userliste
-        * Zur Rangliste machen
+    * Timer hinzufügen
+        * Neue Zählung bei Malbeginn
+        * Malabbruch bei Zeitablauf
+        
+        
+        
+        
+        
+        
 <<<<<<< HEAD
 
 =======
