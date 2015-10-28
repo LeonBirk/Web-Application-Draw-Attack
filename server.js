@@ -68,13 +68,11 @@ io.on('connection', function (spieler) {
     spieler.on('verlassen', function () {
         for (var i = 0; i < alleSpieler.length; i++) {
             if (alleSpieler[i].id = spieler.id) {
-                alleSpieler.slice(i)
+                alleSpieler.slice(0,i-1).concat(alleSpieler.slice(i+1, alleSpieler.length));
                 nachricht = alleSpieler[i].name + ' hat das Spiel verlassen';
                 io.emit('chat message', nachricht);
                 break;
-            }
         }
-
     });
     
     // Reinigen der Leinwand, wenn Button geklickt wird
