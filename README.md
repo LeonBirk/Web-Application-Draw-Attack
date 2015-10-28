@@ -2,7 +2,6 @@
 * TO DO
 
     * Allgemeines
-        * Header/Footer (Mit Logo und so wäre cool)
         * Hintergrund
         
     * Chat
@@ -13,10 +12,8 @@
         * Name in extra Farbe + Fett
         
     * Leinwand
-        * regelung wer sendet, wer nicht
         * Farbenänderung an andere senden
         * Positionierung
-        * Sperren für nichtmaler
         * Kommentare im Code
         
     * Timer hinzufügen

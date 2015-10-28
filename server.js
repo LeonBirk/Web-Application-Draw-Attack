@@ -43,6 +43,7 @@ io.on('connection', function (spieler) {
 
     //Anmeldung
     spieler.on('beitritt', function (name) {
+        prüfeNamen(name);
         spieler.name = name;
         spieler.points = 0; ////Punkte für das richtige Erraten
         if (alleSpieler.length == 0) {
@@ -145,6 +146,18 @@ function chkGuess(guess, idx) {
 
     }
 
+}
+
+function prüfeNamen(name)
+{
+    for (var i=0; i < alleSpieler.length; i++)
+        {
+            if(alleSpieler[i].name == name)
+                {
+                    alert("Dieser Name wird bereits verwendet.");
+                    break;
+                }
+        }
 }
 
 
