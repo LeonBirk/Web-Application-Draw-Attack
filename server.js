@@ -154,8 +154,7 @@ function prüfeNamen(name)
         {
             if(alleSpieler[i].name == name)
                 {
-                    alert("Dieser Name wird bereits verwendet.");
-                    break;
+                    console.log("Dieser Name wird bereits verwendet.");
                 }
         }
 }
