@@ -137,9 +137,10 @@ body {
 
 #header {
     height: 120px;
-    background-image: url(LogoOhneSchrift_gespiegelt_gereiht.png);
-    background-size: contain;
-    background-position: top;
+    background-image: url(Logoheader.png);
+    background-repeat: repeat-x;
+    background-size: cover;
+    background-position: top, center;
 }
 
 
