@@ -73,7 +73,7 @@ io.on('connection', function (spieler) {
                 io.emit('chat message', nachricht);
                 break;
         }
-    });
+    }});
     
     // Reinigen der Leinwand, wenn Button geklickt wird
     spieler.on('leinwandReinigen', function () {
