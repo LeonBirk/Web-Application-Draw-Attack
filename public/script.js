@@ -170,6 +170,8 @@ function farbuebergabe (buttonnr){
         var element = document.getElementById(buttonnr);
         var cssdaten = window.getComputedStyle(element, null);
         farbe = cssdaten.backgroundColor;
+    context.closePath();
+    context.beginPath();
 }
 
 
@@ -191,12 +193,33 @@ socket.on('malen', function (vonX, vonY, nachX, nachY) {
 window.onresize = initLeinwand;
 
 function initLeinwand() {
+    //Canvas Buffern
     var buffer = document.getElementById('buffer');
     var w = document.getElementById("malbereich").clientWidth;
     var h = document.getElementById("malbereich").clientHeight;
     buffer.width = w;
     buffer.height = h;
     buffer.getContext('2d').drawImage(leinwand, 0, 0);
+    
+    //Canvas verkleinern
+    leinwand.width = 0;
+    leinwand.height = 0;
+    
+    //Malbereich anpassen
+    var malbereich = document.getElementById("malbereich");
+    var ratio = 0.8;
+    console.log("Ratio: " + ratio);
+    console.log("clientHeight: " + malbereich.clientHeight);
+    console.log("clientWidth: " + malbereich.clientWidth);
+    var neueHoehe = malbereich.clientWidth * ratio;
+    console.log("Neue Höhe: " + neueHoehe);
+    malbereich.style.height = neueHoehe + "px";
+    console.log("clientHeight: " + malbereich.clientHeight);
+    
+    //leinwand wiederherstellen
+    
+    w = document.getElementById("malbereich").clientWidth;
+    h = document.getElementById("malbereich").clientHeight;
     leinwand.width = w;
     leinwand.height = h;
     leinwand.getContext('2d').drawImage(buffer, 0, 0);
@@ -204,4 +227,6 @@ function initLeinwand() {
     bufctx.closePath();
     bufctx.beginPath();
     bufctx.clearRect(0, 0, leinwand.width, leinwand.height);
+    
+    
 }

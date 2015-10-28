@@ -341,7 +341,6 @@ body {
 #malbereich {
     margin-left: 20%;
     width: 55%;
-    height: 56%;
     border: 20px solid #ccb089;
 	border-image-source: url('Wooden_Frame.jpg');
 	border-image-slice: 50 65;
@@ -351,9 +350,7 @@ body {
     float: left;
 }
 
-#leinwand{
-    width: calc(100%/0.95);
-}
+
 
 #rateboard {
     width: 10%;
