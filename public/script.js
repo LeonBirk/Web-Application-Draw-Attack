@@ -177,7 +177,7 @@ socket.on('malen', function (vonX, vonY, nachX, nachY) {
     malen(vonX, vonY, nachX, nachY);
 });
 
-window.onresize = initLeinwand();
+window.onresize = initLeinwand;
 
 function initLeinwand() {
     var buffer = document.getElementById('buffer');
@@ -189,4 +189,8 @@ function initLeinwand() {
     leinwand.width = w;
     leinwand.height = h;
     leinwand.getContext('2d').drawImage(buffer, 0, 0);
+    var bufctx = buffer.getContext("2d");
+    bufctx.closePath();
+    bufctx.beginPath();
+    bufctx.clearRect(0, 0, leinwand.width, leinwand.height);
 }
