@@ -9,6 +9,8 @@ document.getElementById('malbereich').style.visibility = 'hidden';
 //Farbpalette ausblenden
 document.getElementById('farben').style.visibility = 'hidden';
 
+var maler = false; //Gibt an, ob der Spieler Maler ist oder nicht
+
 var socket = io();
 initLeinwand();
 
@@ -82,9 +84,9 @@ window.onbeforeunload = function () {
 
 
 //Das zu erratende Wort wird angezeigt
-socket.on('raten', function (msg) {
+socket.on('raten', function (msg, malzustand) {
     document.getElementById("rateboard").innerHTML = (msg);
-
+    maler = malzustand;
 });
 // Chat Logik Ende
 
@@ -136,14 +138,16 @@ var clickDrag = new Array();
 
 function malbeginn(e) {
     e.preventDefault();
+    if(maler){
     vorherigeClicks.mouseX = e.pageX - leinwand.offsetLeft;
     vorherigeClicks.mouseY = e.pageY - leinwand.offsetTop;
 
     paint = true;
+    }
 }
 
 function sendemalen(e) {
-
+    if(maler){
     if (paint) {
         neuX = e.pageX - leinwand.offsetLeft;
         neuY = e.pageY - leinwand.offsetTop;
@@ -152,26 +156,30 @@ function sendemalen(e) {
         vorherigeClicks.mouseX = neuX;
         vorherigeClicks.mouseY = neuY;
     }
+    }
 
 }
 
 function malende(e) {
+    if(maler)
     paint = false;
-
 }
 
 function ausBildschirm(e) {
+    if(maler)
     paint = false;
 }
 
 var farbe = "black";
 
 function farbuebergabe (buttonnr){
+    if(maler){
         var element = document.getElementById(buttonnr);
         var cssdaten = window.getComputedStyle(element, null);
         farbe = cssdaten.backgroundColor;
     context.closePath();
     context.beginPath();
+    }
 }
 
 

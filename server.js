@@ -110,12 +110,12 @@ function showSpielstatus() {
     try {
         for (var i = 0; i < alleSpieler.length; i++) {
             if (alleSpieler[i].zustand == 1 && alleSpieler.length > 1) {
-                io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Zeichne den Begriff: " + words[currentWordIndex]);
+                io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Zeichne den Begriff: " + words[currentWordIndex], true);
             } else if (alleSpieler[i].zustand == 1 && alleSpieler.length == 1) {
                 io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Warte auf weitere Mitspieler. ")
             } else if (alleSpieler[i].zustand == 0 && alleSpieler.length > 1) {
 
-                io.sockets.connected[alleSpieler[i].id].emit('raten', "Du rätst ");
+                io.sockets.connected[alleSpieler[i].id].emit('raten', "Du rätst ", false);
             }
 
         }

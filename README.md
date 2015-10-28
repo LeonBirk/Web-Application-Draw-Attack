@@ -14,12 +14,10 @@
         
     * Leinwand
         * regelung wer sendet, wer nicht
-        * Farbenänderungen sollen nur neue Striche betreffen
         * Farbenänderung an andere senden
         * Positionierung
         * Sperren für nichtmaler
         * Kommentare im Code
-        * Größe erst nachträglich über script definieren
         
     * Timer hinzufügen
         * Neue Zählung bei Malbeginn
