@@ -13,8 +13,6 @@ var maler = false; //Gibt an, ob der Spieler Maler ist oder nicht
 
 var socket = io();
 initLeinwand();
-//var activeArtist= false; 
-
 
 //Anmeldelogik
 var loginbutton = document.getElementById("usrlogin");
@@ -76,9 +74,7 @@ socket.on('reinigen', function () {
 });
 // Leinwand reinigen nach Click
 var clearButton1 = document.getElementById ("clearButton");
-clearButton1.onclick = function () { 
- if(maler == true ) 
-	 socket.emit('leinwandReinigen')};
+clearButton1.onclick = function () { socket.emit('leinwandReinigen')};
 
 
 //Spieler schließt den Tab
@@ -91,8 +87,6 @@ window.onbeforeunload = function () {
 socket.on('raten', function (msg, malzustand) {
     document.getElementById("rateboard").innerHTML = (msg);
     maler = malzustand;
-	/*if (msg == "Du rätst ") {activeArtist = false;}  //// AN
-    else {activeArtist = true; }*/
 });
 // Chat Logik Ende
 
@@ -121,14 +115,6 @@ socket.on('listenaktualisierung', function (spielerArray) {
     }
     
 });
-
-//Logik Timer
-
-socket.on('updateTimer', function (timVal){
-        document.getElementById("tot").innerHTML = timVal; 
-
-
-})
 
 /*
  *    Logik des Malbereiches

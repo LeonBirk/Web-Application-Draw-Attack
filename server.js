@@ -16,7 +16,6 @@ var alleSpieler = new Array();
 var words = new Array();
 var currentWordIndex = 0;
 var curZeichnerIndex = 0;
-var timerFired = false; // startTimer nur einmal pro Runde
 
 app.get('/', function (req, res) {
     app.use(express.static(__dirname + '/public'));
@@ -75,8 +74,7 @@ io.on('connection', function (spieler) {
                 io.emit('chat message', nachricht);
                 break;
         }
-    }
-	});
+    }});
     
     // Reinigen der Leinwand, wenn Button geklickt wird
     spieler.on('leinwandReinigen', function () {
@@ -95,7 +93,7 @@ currentWordIndex = randIndex();
 
 // Datei mit Begriffen wird eingelesen
 function readArray(dateiname) {
-    words = fs.readFileSync(dateiname).toString('utf-8').split(/[?:\r|\n]+/);
+    words = fs.readFileSync(dateiname).toString('utf-8').split("\r\n");
 }
 
 
@@ -106,19 +104,16 @@ function randIndex() {
 }
 
 
-//	function showSpielstatus: zeigt nur dem Zeichnenden das Wort an
+//	function showSpielerstatus: zeigt nur dem Zeichnenden das Wort an
 function showSpielstatus() {
     try {
         for (var i = 0; i < alleSpieler.length; i++) {
             if (alleSpieler[i].zustand == 1 && alleSpieler.length > 1) {
                 io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Zeichne den Begriff: " + words[currentWordIndex], true);
-            if (timerFired == false) {
-				startTimer();			// Der Timer wird gestartet 
-                timerFired = true;
-                };  
-			} else if (alleSpieler[i].zustand == 1 && alleSpieler.length == 1) {
+            } else if (alleSpieler[i].zustand == 1 && alleSpieler.length == 1) {
                 io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Warte auf weitere Mitspieler. ")
             } else if (alleSpieler[i].zustand == 0 && alleSpieler.length > 1) {
+
                 io.sockets.connected[alleSpieler[i].id].emit('raten', "Du rätst ", false);
             }
 
@@ -135,11 +130,10 @@ function chkGuess(guess, idx) {
     if (guess.toUpperCase() === words[currentWordIndex].toUpperCase() && curZeichnerIndex != idx) {
         var nachricht = "Spieler " + alleSpieler[idx].name + " hat den Begriff " + words[currentWordIndex] + " erraten.";
         io.emit('chat message', nachricht);
-		stopTimer();
         alleSpieler[idx].points++; ////Gewinnpunkt wird zugefügt
         if (alleSpieler.length > 2) {
             alleSpieler[curZeichnerIndex].points++;
-        }; //der gute Zeichner kriegt auch einen Punkt, wenn mehr als zwei Spieler spielen
+        }; //der gute Zeichner kriegt auch nen Punkt
         currentWordIndex = randIndex();
         alleSpieler[curZeichnerIndex].zustand = 0;
         alleSpieler[idx].zustand = 1;
@@ -190,46 +184,4 @@ function sortierfunktion(a, b) {
         return -11;
     }
     return 0;
-};
-
-// Timerfunktion, die die Spielzeit je Runde auf 60 Sekunden beschränkt
-function startTimer(){
-	var count = 60;  
-	timerFired= true;
-	
-    timID=setInterval(function() {  
-        io.emit('updateTimer', count)
-        //console.log("Sek " + count);
-        count--;
-        if (count == 0){
-            stopTimer();
-           // console.log("Stop");
-            newRound(); 
-        }
-    }, 1000);
-}
-
-//Stoppt den Timer
-function stopTimer(){
-	clearInterval(timID);
-    timerFired = false;
-    io.emit('updateTimer', " ")
-};
-
-// Startet eine neue Runde
- function newRound(){
-    var nachricht = "Der Begriff "  + words[currentWordIndex] + " wurde nicht erraten.";
-        io.emit('chat message', nachricht);  
-    var nachricht = "Neue Runde";
-        io.emit('chat message', nachricht);  
-        currentWordIndex = randIndex(); //ein neues Wort wird zufällig ausgesucht
-        curZeichnerIndex = (curZeichnerIndex + 1) % alleSpieler.length; //wurde das Wort nicht erraten, ist der nächste Spieler mit malen dran
-        for (var i = 0; i < alleSpieler.length; i++) {
-            alleSpieler[i].zustand = 0;
-        }
-        alleSpieler[curZeichnerIndex].zustand = 1;  // neuer Zeichner wird bestimmt
-        showSpielstatus();
-        spielerListeakt();
-        io.emit('reinigen'); //den Clients die Anweisung geben die Leinwand zu clearen
-
 };
