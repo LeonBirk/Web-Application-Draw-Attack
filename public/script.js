@@ -13,7 +13,6 @@ var maler = false; //Gibt an, ob der Spieler Maler ist oder nicht
 
 var socket = io();
 initLeinwand();
-//var activeArtist= false; 
 
 
 //Anmeldelogik
@@ -91,8 +90,6 @@ window.onbeforeunload = function () {
 socket.on('raten', function (msg, malzustand) {
     document.getElementById("rateboard").innerHTML = (msg);
     maler = malzustand;
-	/*if (msg == "Du rätst ") {activeArtist = false;}  //// AN
-    else {activeArtist = true; }*/
 });
 // Chat Logik Ende
 
