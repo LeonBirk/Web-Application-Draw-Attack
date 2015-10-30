@@ -88,8 +88,13 @@ window.onbeforeunload = function () {
 
 //Das zu erratende Wort wird angezeigt
 socket.on('raten', function (msg, malzustand) {
-    document.getElementById("rateboard").innerHTML = (msg);
-    maler = malzustand;
+            document.getElementById("rateboard").innerHTML = (msg);
+            if (malzustand == true) {
+                document.getElementById("clearButton").style.visibility = 'visible';
+            } else {
+                document.getElementById("clearButton").style.visibility = 'hidden';
+            }
+            maler = malzustand;
 });
 // Chat Logik Ende
 

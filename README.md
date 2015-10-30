@@ -10,15 +10,16 @@
         * username checken (doppelter etc)
         * Liniengedöhnse anpassen
         * Name in extra Farbe + Fett
+        * Nachrichten nicht abwechselnd breit und eng
         
     * Leinwand
         * Farbenänderung an andere senden
         * Positionierung
         * Kommentare im Code
+        * Leinwandinhalt an gerade beigetretene Spieler senden
         
-    * Timer hinzufügen
-        * Neue Zählung bei Malbeginn
-        * Malabbruch bei Zeitablauf
+    * Timer 
+        * Design nicht als Button
         
         
         
@@ -30,7 +31,5 @@
 =======
         * bei 350px (höhe) wird liste abgeschnitten (workaround)
 >>>>>>> origin/master
-    
-    * Countdown Timer
-        * alles
+
         

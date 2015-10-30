@@ -53,7 +53,7 @@ io.on('connection', function (spieler) {
             spieler.zustand = 0;
         }
         alleSpieler.push(spieler);
-        //console.log(spieler.id);
+ 
         // Anzeigen der Spieler in Spielerliste
         spielerListeakt();
 
@@ -220,7 +220,7 @@ function stopTimer(){
  function newRound(){
     var nachricht = "Der Begriff "  + words[currentWordIndex] + " wurde nicht erraten.";
         io.emit('chat message', nachricht);  
-    var nachricht = "Neue Runde";
+    var nachricht = "Neue Runde!";
         io.emit('chat message', nachricht);  
         currentWordIndex = randIndex(); //ein neues Wort wird zufällig ausgesucht
         curZeichnerIndex = (curZeichnerIndex + 1) % alleSpieler.length; //wurde das Wort nicht erraten, ist der nächste Spieler mit malen dran
