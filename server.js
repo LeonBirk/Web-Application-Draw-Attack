@@ -67,16 +67,27 @@ io.on('connection', function (spieler) {
     });
 
     //Spieler verlässt das Spiel
-    spieler.on('verlassen', function () {
-        for (var i = 0; i < alleSpieler.length; i++) {
-            if (alleSpieler[i].id = spieler.id) {
-                alleSpieler.slice(0,i-1).concat(alleSpieler.slice(i+1, alleSpieler.length));
+       spieler.on('verlassen', function () {
+         var removeID;
+       for (var i = 0; i < alleSpieler.length; i++) {
+           if (alleSpieler[i].id == spieler.id) {
+                removeID = i;
                 nachricht = alleSpieler[i].name + ' hat das Spiel verlassen';
-                io.emit('chat message', nachricht);
-                break;
-        }
-    }
-	});
+                io.emit('chat message', nachricht);}
+            }
+            if(alleSpieler.length > 1){
+                if (alleSpieler[removeID].zustand == 1 && removeID == 0){ //Der Zeichner verlässt das Spiel, ein neuer wird bestimmt
+                    alleSpieler[removeID+1].zustand = 1;} //war der Zeichner der erste im Array, wird der nächste Spieler als Zeichner bestimmt
+
+                else  {alleSpieler[removeID-1].zustand =1;} // ansonsten wird der Spieler davor neuer Zeichner
+            
+                alleSpieler.splice(removeID,1); //nur wenn mehr als 1 Spieler 
+			}             
+            else{process.exit(1);} //wird noch ausgebaut, Server sollte eigentlich weiter laufen
+
+            spielerListeakt();
+            showSpielstatus();
+ 	});
     
     // Reinigen der Leinwand, wenn Button geklickt wird
     spieler.on('leinwandReinigen', function () {
@@ -108,7 +119,6 @@ function randIndex() {
 
 //	function showSpielstatus: zeigt nur dem Zeichnenden das Wort an
 function showSpielstatus() {
-    try {
         for (var i = 0; i < alleSpieler.length; i++) {
             if (alleSpieler[i].zustand == 1 && alleSpieler.length > 1) {
                 io.sockets.connected[alleSpieler[curZeichnerIndex].id].emit('raten', "Zeichne den Begriff: " + words[currentWordIndex], true);
@@ -122,10 +132,7 @@ function showSpielstatus() {
                 io.sockets.connected[alleSpieler[i].id].emit('raten', "Du rätst ", false);
             }
 
-        }
-    } catch (e) {
-        console.log("error! :D");
-    }
+        } 
 }
 
 
