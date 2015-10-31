@@ -17,7 +17,6 @@ var words = new Array();
 var currentWordIndex = 0;
 var curZeichnerIndex = 0;
 var timerFired = false; // startTimer nur einmal pro Runde
-var countdown = 60; //Countdownzeit in Sekunden
 
 app.get('/', function (req, res) {
     app.use(express.static(__dirname + '/public'));
@@ -95,7 +94,7 @@ io.on('connection', function (spieler) {
             }
             else{ //ist nur noch ein Spieler im Spiel
             stopTimer();
-            alleSpieler.splice(removeID,1);} //// Ok ich war der letzte --> Schicht am Schacht
+            alleSpieler.splice(removeID,1);} 
             curZeichnerIndex = 0; // init current Zeichnerindex
  	});
     
@@ -211,7 +210,7 @@ function sortierfunktion(a, b) {
 
 // Timerfunktion, die die Spielzeit je Runde auf 60 Sekunden beschränkt
 function startTimer(){
-	var count = countdown;  
+	var count = 60;  
 	timerFired= true;
 	
     timID=setInterval(function() {  
