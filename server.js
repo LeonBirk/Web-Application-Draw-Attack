@@ -69,24 +69,33 @@ io.on('connection', function (spieler) {
     //Spieler verlässt das Spiel
        spieler.on('verlassen', function () {
          var removeID;
-       for (var i = 0; i < alleSpieler.length; i++) {
+         for (var i = 0; i < alleSpieler.length; i++) {
            if (alleSpieler[i].id == spieler.id) {
                 removeID = i;
                 nachricht = alleSpieler[i].name + ' hat das Spiel verlassen';
                 io.emit('chat message', nachricht);}
             }
             if(alleSpieler.length > 1){
-                if (alleSpieler[removeID].zustand == 1 && removeID == 0){ //Der Zeichner verlässt das Spiel, ein neuer wird bestimmt
-                    alleSpieler[removeID+1].zustand = 1;} //war der Zeichner der erste im Array, wird der nächste Spieler als Zeichner bestimmt
-
-                else  {alleSpieler[removeID-1].zustand =1;} // ansonsten wird der Spieler davor neuer Zeichner
-            
-                alleSpieler.splice(removeID,1); //nur wenn mehr als 1 Spieler 
-			}             
-            else{process.exit(1);} //wird noch ausgebaut, Server sollte eigentlich weiter laufen
-
-            spielerListeakt();
+                if (alleSpieler[removeID].zustand == 1 && removeID == 0){ //der Zeichner verlässt das Spiel
+                    alleSpieler[removeID+1].zustand = 1; //wenn Zeichner der 1. im Array war,  wird der nächste Spieler im Array Zeichner
+                 }
+               if (alleSpieler[removeID].zustand == 1 && removeID > 0) {
+                    alleSpieler[removeID-1].zustand =1; // ansonsten wird der Spieler davor Zeichner
+                }                          
+                alleSpieler.splice(removeID,1); // Bei mindestens 2 Usern
+				spielerListeakt();
+            for (j = 0; j < alleSpieler.length; j++){ //Update current Zeichnerindex für showSpielstatus()
+                if (alleSpieler[j].zustand == 1) {
+					curZeichnerIndex = j;
+                }
+            }
+            stopTimer(); // bewirkt Neustart des Timers beim Wechsel des Zeichners
             showSpielstatus();
+            }
+            else{ //ist nur noch ein Spieler im Spiel
+            stopTimer();
+            alleSpieler.splice(removeID,1);} 
+            curZeichnerIndex = 0; // init current Zeichnerindex
  	});
     
     // Reinigen der Leinwand, wenn Button geklickt wird
@@ -218,10 +227,16 @@ function startTimer(){
 
 //Stoppt den Timer
 function stopTimer(){
-	clearInterval(timID);
-    timerFired = false;
-    io.emit('updateTimer', " ")
+	try {
+		clearInterval(timID);
+		timerFired = false;
+		io.emit('updateTimer', " ")
+	} 
+	catch (e) {
+        console.log("Info: No timer was running");
+    }   
 };
+
 
 // Startet eine neue Runde
  function newRound(){
