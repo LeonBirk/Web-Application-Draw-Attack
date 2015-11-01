@@ -67,7 +67,7 @@ socket.on('reinigen', function () {
     context.clearRect(0, 0, leinwand.width, leinwand.height);
 });
 // Leinwand reinigen nach Click
-var clearButton = document.getElementById ("clearbutton");
+var clearButton = document.getElementById ("farbklecks");
 clearButton.onclick = function () { 
  if(maler == true ) 
 	 socket.emit('leinwandReinigen')};
@@ -81,10 +81,10 @@ window.onbeforeunload = function () {
 socket.on('raten', function (msg, malzustand) {
             document.getElementById("status").innerHTML = (msg);
             if (malzustand == true) {
-                document.getElementById("clearbutton").style.visibility = 'visible';
+                document.getElementById("farbklecks").src = "farbklecksemitschrift.png";
 				document.getElementById("farbe").style.visibility = 'visible';
             } else {
-                document.getElementById("clearbutton").style.visibility = 'hidden';
+                document.getElementById("farbklecks").src="farbkleckse.png";
 				document.getElementById("farbe").style.visibility = 'hidden';
             }
             maler = malzustand;

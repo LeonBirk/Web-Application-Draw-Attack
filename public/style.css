@@ -13,6 +13,7 @@ body{
     height: 100%;
     width: 100%;
    	margin: 0 auto;
+	background-color: white;
 }
 
 #header{
@@ -67,6 +68,7 @@ body{
         justify-content:space-around;
         align-content: center;
         align-items:center;
+		margin-bottom: 40px;
 }
 
         #ueberschriftlogin {
@@ -208,7 +210,8 @@ body{
 		}
 	
 		#fuellung{
-			background-color: blueviolet;
+			/*background-color: blueviolet;*/
+			background: linear-gradient(90deg, purple, blue, green, yellow, red, purple);
 			width: 100%;
 			height: 50%;
 			
@@ -298,7 +301,7 @@ body{
 }    
     
     #rangliste{
-        height: 60%;
+        height: 40%;
         /*background-color: green;*/
         /*rangliste in einzelne divs unterteilen*/
         display: flex;
@@ -307,6 +310,7 @@ body{
         justify-content: space-around;
         align-items: flex-start;
         align-content: flex-start;
+		overflow: scroll;
 }
 
         #ueberschrift{
@@ -335,33 +339,40 @@ body{
         }
 
         #malerliste{
-            width: 100px;
+            width: 45%;
             height: auto;
 			padding-left: 10px;
 }
 
         #punkteliste{
-            width: 20px;
+            width: 20%;
             height: auto;
 			list-style: none;
 			padding-left: 0;
 }
 
     #clearleinwand{
-        height: 20%;
+        height: 40%;
 		width: 100%;
         /*background-color: lawngreen;*/
         /*Setzt Button genau in Mitte des divs*/
         display: flex;
         align-content: center;
         align-items: center;
-        justify-content: space-around;
+        justify-content: center;
     }
     
-        #clearbutton{
-            width: 70%;
-            background: #349e92;
-        }   
+		#farbklecks{
+			width: 80%;
+			height: auto;
+		}
+	
+        /*#clearbutton{
+            width: 100%;
+			height: auto;
+            background-image: url(farbkleckse.png);
+			
+        }   */
     
 #chat{
     width: 100%;
