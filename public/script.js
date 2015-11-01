@@ -118,7 +118,8 @@ socket.on('listenaktualisierung', function (spielerArray) {
 //Logik Timer
 socket.on('updateTimer', function (timVal){
         /*document.getElementById("timer").innerHTML = timVal; */
-		document.getElementById("fuellung").style.width = (timVal*100/60) + "%";
+		document.getElementById("fuellung").style.width = (timVal*100/90) + "%";
+		document.getElementById("prozent").innerHTML = timVal;
 })
 
 /*

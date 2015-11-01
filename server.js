@@ -17,7 +17,7 @@ var words = new Array();
 var currentWordIndex = 0;
 var curZeichnerIndex = 0;
 var timerFired = false; // startTimer nur einmal pro Runde
-var countdown = 60; //Countdownzeit in Sekunden
+var countdown = 90; //Countdownzeit in Sekunden
 
 app.get('/', function (req, res) {
     app.use(express.static(__dirname + '/public'));
@@ -209,7 +209,7 @@ function sortierfunktion(a, b) {
     return 0;
 };
 
-// Timerfunktion, die die Spielzeit je Runde auf 60 Sekunden beschränkt
+// Timerfunktion, die die Spielzeit je Runde auf 90 Sekunden beschränkt
 function startTimer(){
 	var count = countdown;  
 	timerFired= true;

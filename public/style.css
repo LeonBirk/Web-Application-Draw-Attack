@@ -189,11 +189,30 @@ body{
 			color: black;
 		}
 	
-		#fuellung{
+		#rahmentimer{
 			width: 100%;
-			height: 30%;
+			height: 50%;
+			border: 2px solid gray;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			align-content: flex-start;
+			justify-content: space-around;
+		}
+	
+		#prozent{
+			width: 100%;
+			height: 50%;
+			text-align: bottom;
+			color: gray;
+		}
+	
+		#fuellung{
 			background-color: blueviolet;
-			border-color: gray;
+			width: 100%;
+			height: 50%;
+			
+			
 		}
     
     #farbe{
