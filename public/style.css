@@ -253,7 +253,7 @@ body{
         #button9{background-color: black;}
 
         #radierer{
-            width: 100%;
+            width: 90%;
             height: auto;
             background-color: #FAFAFC;
 }
@@ -262,7 +262,7 @@ body{
     width: 60%;
     height: 70%;
 	min-width: 600px;
-    /*background-color: rosybrown;*/
+    background-color: lightgrey;
 	/*positioniert die Leinwand in der Mitte*/
 	display: flex;
     flex-direction: row;
@@ -274,7 +274,7 @@ body{
     #leinwand{
         width: 600px;
         height: 350px;
-		border: 10px solid gray;
+		background-color: white;
     }
 	
 	#buffer{
