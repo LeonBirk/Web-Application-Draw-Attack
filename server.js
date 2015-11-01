@@ -103,6 +103,10 @@ io.on('connection', function (spieler) {
     spieler.on('leinwandReinigen', function () {
         io.emit('reinigen');
     });
+    
+    spieler.on('farbe_setzen', function(farbe){
+        spieler.broadcast.emit('farbe_setzen', farbe);   
+    });
 });
 
 

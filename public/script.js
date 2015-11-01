@@ -181,10 +181,17 @@ function farbuebergabe (buttonnr){
         var element = document.getElementById(buttonnr);
         var cssdaten = window.getComputedStyle(element, null);
         farbe = cssdaten.backgroundColor;
+        socket.emit('farbe_setzen', farbe);
     context.closePath();
     context.beginPath();
     }
 }
+
+socket.on('farbe_setzen', function(neueFarbe){
+    farbe = neueFarbe;
+    context.closePath();
+    context.beginPath();
+});
 
 function malen(vonX, vonY, nachX, nachY) {
     /*var farbe = document.getElementsByClassName('farbbutton').addEventListener;*/
