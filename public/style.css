@@ -13,7 +13,7 @@ body{
     height: 100%;
     width: 100%;
    	margin: 0 auto;
-	background-color: white;
+	background-color: #EFFBFB;
 }
 
 #header{
@@ -272,6 +272,7 @@ body{
     align-content: center;
     align-items: center;
     justify-content: center;
+	border-radius: 6px;
 }    
 
     #leinwand{
@@ -310,7 +311,6 @@ body{
         justify-content: space-around;
         align-items: flex-start;
         align-content: flex-start;
-		overflow: scroll;
 }
 
         #ueberschrift{
@@ -328,6 +328,7 @@ body{
 			font-size: 2em;
 			font-weight: bold;
 			font-family: GoodDog;
+			padding-bottom: 10px;
 		}	
 
         #punkte{
@@ -336,12 +337,26 @@ body{
 			font-size: 2em;
 			font-weight: bold;
 			font-family: GoodDog;
+			padding-bottom: 10px;
         }
 
+		#zumscrollen{
+			width: 100%;
+			height: 75%;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			align-items: flex-start;
+			align-content: flex-start;
+			overflow: scroll;
+		}
+	
         #malerliste{
             width: 45%;
             height: auto;
-			padding-left: 10px;
+			padding-left: 15px;
+			
 }
 
         #punkteliste{
@@ -349,6 +364,7 @@ body{
             height: auto;
 			list-style: none;
 			padding-left: 0;
+			text-align: center;
 }
 
     #clearleinwand{
@@ -401,10 +417,11 @@ body{
         #messages{
             width: 1000px;
             height: 100px;
-            background-color: lightcyan;
+            background-color: dimgray;
 			overflow: auto;
 			list-style: none;
 			padding-left: 0;
+			border-radius: 6px;
         }
     
 		#messages li{
