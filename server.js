@@ -34,8 +34,9 @@ io.on('connection', function (spieler) {
         for (var i = 0; i < alleSpieler.length; i++) {
             if (alleSpieler[i].id == spieler.id) {
                 curSpieler = i;
-                var nachricht = alleSpieler[i].name + ": " + msg;
-                io.emit('chat message', nachricht);
+                //var nachricht = alleSpieler[i].name + ": " + msg;
+                
+                io.emit('chat message', msg, alleSpieler[i].name);
                 break;
             }
         }

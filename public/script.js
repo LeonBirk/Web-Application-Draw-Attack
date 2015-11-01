@@ -26,7 +26,9 @@ usrname.onkeypress = function (key) {
 var sendebutton = document.getElementById("chatsendebutton");
 var text = document.getElementById("chateingabefeld");
 sendebutton.onclick = function () {
-    socket.emit('chat message', text.value);
+    if(text.value){
+        socket.emit('chat message', text.value);
+    }
     text.value = '';
 }
 //Eingabe ohne vorher ins Feld zu klicken
@@ -38,12 +40,25 @@ text.onkeypress = function (key) {
     }
 }
 
-socket.on('chat message', function (msg) {
-    var liste = document.getElementById("messages");
+socket.on('chat message', function (nachricht, name) {
+var liste = document.getElementById("messages");
     var child = document.createElement("li");
-    child.appendChild(document.createTextNode(msg));
+    var msg = document.createElement("span");
+    var uhrzeit = new Date();
+    var stunde = uhrzeit.getHours();
+    var minute = uhrzeit.getMinutes();
+    var sekunde = uhrzeit.getSeconds();
+    var zeit = '[' + stunde + ':' + minute + ':' + sekunde + '] ';
+    if(name){
+        msg.innerHTML = zeit + '<b>' + name + ': </b>' + nachricht;
+    }else{
+        msg.innerHTML = zeit + '<b>' + nachricht + '</b>';
+    }
+    child.appendChild(msg);
     liste.appendChild(child);
     // Zum Ende der Chat-Liste scrollen
+    
+    
     liste.scrollTop = liste.scrollHeight;
 });
 
