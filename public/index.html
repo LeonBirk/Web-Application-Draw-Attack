@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
-
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Guess What?!</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <!--Einbindung css-->
     <link rel="stylesheet" href="./style.css">
-    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
@@ -22,31 +22,29 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-</head>
-
+</head>    
 <body>
-
     <div id="loginrahmen">
         <div id="login">
-            <div id="Anmeldetitel">Username</div>
-            <input id="usr" placeholder="Username" maxlength="10" />
-            <button id="usrlogin">Anmelden</button>
+            <div id="ueberschriftlogin">Username</div>
+            <input id="logineingabefeld" placeholder="Username" maxlength="10" />
+        <button class="unserbutton" id="loginbutton">Anmelden</button>
         </div>
     </div>
-
-    <div id="rahmen">
-        <header id=header></header>
-        <main id=main>
-
-
-            <div id="rateboard">
+    <header id="header"></header>
+    <div id="alle">
+        <div id="worttimerfarbe">
+            <div id="wortundtimer">
+                <div id="wort">
+					<div id="wortueberschrift">Status</div>
+					<div id="status"></div>
+				</div>
+                <div class="unserbutton" id="timer">
+					<div id="zeit">verbleibende Zeit</div>
+					<div id="fuellung"></div>
+				</div>
             </div>
-			<div id="tot">
-                Countdown
-            </div>
-
-
-            <div id="farben">
+            <div id="farbe">
                 <button class="farbbutton" id="button1" onclick='farbuebergabe("button1")'></button> 
                 <button class="farbbutton" id="button2" onclick='farbuebergabe("button2")'></button>
                 <button class="farbbutton" id="button3" onclick='farbuebergabe("button3")'></button>
@@ -58,41 +56,34 @@
                 <button class="farbbutton" id="button9" onclick='farbuebergabe("button9")'></button>
                 <img src="Radiergummi.png" id="radierer" onclick='farbuebergabe("radierer")'>
             </div>
-
-            <div id="malbereich">
-                <canvas id="leinwand"></canvas>
-            </div>
-
-            <div id="malerlistenbereich">
-                <h3 id="rang">Rangliste</h3>
-                <h5 id="spieler">Spieler</h5><h5 id="punkte">Punkte</h5>
+        </div>
+        <div id="malbereich">
+            <canvas id="leinwand"></canvas>
+			<canvas id="buffer"></canvas>
+        </div>
+        <div id="ranglisteundclearleinwand">
+            <div id="rangliste">
+                <div id="ueberschrift">Rangliste</div>
+                <div id="spieler">Spieler</div>
+                <div id="punkte">Punkte</div>
                 <ol id="malerliste"></ol>
                 <ul id="punkteliste"></ul>
             </div>
-            
-            <div id="clearbutton">
-            <button id="clearButton">Leinwand leeren</button>
-            </div>
-            
-            <div id="chat">
+            <div id="clearleinwand">
+                <button class="unserbutton" id="clearbutton">Leinwand leeren</button>
+            </div>    
+        </div>  
+        <div id="chat">
+            <div id="chatfenster">
                 <ul id="messages"></ul>
-
-                <div id="sendefenster">
-                    <input id="m" />
-                    <button id="sendebutton">Send</button>
-                </div>
+                <input id="chateingabefeld" />
+                <button class="unserbutton" id="chatsendebutton">Send</button>
             </div>
-            <canvas id="buffer" visibility="hidden"></canvas>
-        </main>
-        <!--<footer id=footer>test</footer>-->
+        </div>
+		
     </div>
-
+     <!--Einbindung javascript-->
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-
-    <script src="./script.js"></script>
-
-    <script>
-    </script>
-</body>
-
+	<script src="script.js"></script> 
+</body>   
 </html>

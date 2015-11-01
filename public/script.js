@@ -1,41 +1,37 @@
-//chat ausblenden
-document.getElementById("chat").style.visibility = 'hidden';
-//Ratebereich ausbleben
-document.getElementById('rateboard').style.visibility = 'hidden';
-// Spielerliste ausblenden
-document.getElementById('malerlistenbereich').style.visibility = 'hidden';
-//Malbereich ausbleben
-document.getElementById('malbereich').style.visibility = 'hidden';
-//Farbpalette ausblenden
-document.getElementById('farben').style.visibility = 'hidden';
+//alles außer login ausblenden
+document.getElementById("header").style.display = 'none';
+document.getElementById("alle").style.display = 'none';
 
 var maler = false; //Gibt an, ob der Spieler Maler ist oder nicht
 
 var socket = io();
 initLeinwand();
 
-
 //Anmeldelogik
-var loginbutton = document.getElementById("usrlogin");
-var usrname = document.getElementById("usr");
+var loginbutton = document.getElementById("loginbutton");
+var usrname = document.getElementById("logineingabefeld");
 loginbutton.onclick = function () {
     socket.emit('beitritt', usrname.value);
 }
+//Eingabe ohne vorher ins Feld zu klicken
 usrname.focus();
+//wenn in Eingabefeld Login mit Enter
 usrname.onkeypress = function (key) {
     if (key.which == 13) {
         loginbutton.onclick();
     }
 };
 
-
 //Chat Logik
-var sendebutton = document.getElementById("sendebutton");
-var text = document.getElementById("m");
+var sendebutton = document.getElementById("chatsendebutton");
+var text = document.getElementById("chateingabefeld");
 sendebutton.onclick = function () {
     socket.emit('chat message', text.value);
     text.value = '';
 }
+//Eingabe ohne vorher ins Feld zu klicken
+text.focus();
+//wenn in Eingabefeld Senden mit Enter
 text.onkeypress = function (key) {
     if (key.which == 13) {
         sendebutton.onclick();
@@ -51,19 +47,16 @@ socket.on('chat message', function (msg) {
     liste.scrollTop = liste.scrollHeight;
 });
 
-
 socket.on('beitritt', function (msg) {
-    document.getElementById("chat").style.visibility = "visible";
-    document.getElementById("malbereich").style.visibility = "visible";
-    document.getElementById("rateboard").style.visibility = "visible";
-    document.getElementById("malerlistenbereich").style.visibility = 'visible';
-    document.getElementById('farben').style.visibility = 'visible';
-    document.getElementById("loginrahmen").style.visibility = "hidden";
+    document.getElementById("header").style.display = "block";
+    document.getElementById("alle").style.display = "flex";
+    document.getElementById("loginrahmen").style.display = "none";
     var liste = document.getElementById("messages");
     var child = document.createElement("li");
     child.appendChild(document.createTextNode(msg));
 
     liste.appendChild(child);
+	initLeinwand();
 });
 
 // Reinigen der Leinwand
@@ -74,30 +67,29 @@ socket.on('reinigen', function () {
     context.clearRect(0, 0, leinwand.width, leinwand.height);
 });
 // Leinwand reinigen nach Click
-var clearButton1 = document.getElementById ("clearButton");
-clearButton1.onclick = function () { 
+var clearButton = document.getElementById ("clearbutton");
+clearButton.onclick = function () { 
  if(maler == true ) 
 	 socket.emit('leinwandReinigen')};
-
 
 //Spieler schließt den Tab
 window.onbeforeunload = function () {
     socket.emit('verlassen');
 }
 
-
 //Das zu erratende Wort wird angezeigt
 socket.on('raten', function (msg, malzustand) {
-            document.getElementById("rateboard").innerHTML = (msg);
+            document.getElementById("status").innerHTML = (msg);
             if (malzustand == true) {
-                document.getElementById("clearButton").style.visibility = 'visible';
+                document.getElementById("clearbutton").style.visibility = 'visible';
+				document.getElementById("farbe").style.visibility = 'visible';
             } else {
-                document.getElementById("clearButton").style.visibility = 'hidden';
+                document.getElementById("clearbutton").style.visibility = 'hidden';
+				document.getElementById("farbe").style.visibility = 'hidden';
             }
             maler = malzustand;
 });
 // Chat Logik Ende
-
 
 // Liste der Spieler
 socket.on('listenaktualisierung', function (spielerArray) {
@@ -121,15 +113,12 @@ socket.on('listenaktualisierung', function (spielerArray) {
         child2.appendChild(document.createTextNode(spielerArray[i].points));
         liste2.appendChild(child2);
     }
-    
 });
 
 //Logik Timer
-
 socket.on('updateTimer', function (timVal){
-        document.getElementById("tot").innerHTML = timVal; 
-
-
+        /*document.getElementById("timer").innerHTML = timVal; */
+		document.getElementById("fuellung").style.width = (timVal*100/60) + "%";
 })
 
 /*
@@ -142,7 +131,6 @@ var paint = false;
 // zum initialisieren des Malbereichs
 leinwand = document.getElementById('leinwand');
 context = leinwand.getContext("2d");
-
 
 leinwand.addEventListener("mousedown", malbeginn, false);
 leinwand.addEventListener("mousemove", sendemalen, false);
@@ -173,7 +161,6 @@ function sendemalen(e) {
         vorherigeClicks.mouseY = neuY;
     }
     }
-
 }
 
 function malende(e) {
@@ -198,7 +185,6 @@ function farbuebergabe (buttonnr){
     }
 }
 
-
 function malen(vonX, vonY, nachX, nachY) {
     /*var farbe = document.getElementsByClassName('farbbutton').addEventListener;*/
     
@@ -219,31 +205,15 @@ window.onresize = initLeinwand;
 function initLeinwand() {
     //Canvas Buffern
     var buffer = document.getElementById('buffer');
-    var w = document.getElementById("malbereich").clientWidth;
-    var h = document.getElementById("malbereich").clientHeight;
+    var w = document.getElementById("leinwand").clientWidth;
+    var h = document.getElementById("leinwand").clientHeight;
     buffer.width = w;
     buffer.height = h;
     buffer.getContext('2d').drawImage(leinwand, 0, 0);
     
-    //Canvas verkleinern
-    leinwand.width = 0;
-    leinwand.height = 0;
-    
-    //Malbereich anpassen
-    var malbereich = document.getElementById("malbereich");
-    var ratio = 0.8;
-    console.log("Ratio: " + ratio);
-    console.log("clientHeight: " + malbereich.clientHeight);
-    console.log("clientWidth: " + malbereich.clientWidth);
-    var neueHoehe = malbereich.clientWidth * ratio;
-    console.log("Neue Höhe: " + neueHoehe);
-    malbereich.style.height = neueHoehe + "px";
-    console.log("clientHeight: " + malbereich.clientHeight);
-    
     //leinwand wiederherstellen
-    
-    w = document.getElementById("malbereich").clientWidth;
-    h = document.getElementById("malbereich").clientHeight;
+    w = document.getElementById("leinwand").clientWidth;
+    h = document.getElementById("leinwand").clientHeight;
     leinwand.width = w;
     leinwand.height = h;
     leinwand.getContext('2d').drawImage(buffer, 0, 0);
@@ -251,6 +221,7 @@ function initLeinwand() {
     bufctx.closePath();
     bufctx.beginPath();
     bufctx.clearRect(0, 0, leinwand.width, leinwand.height);
-    
-    
+	
+	buffer.width = 0;
+	buffer.height = 0;
 }
