@@ -2,34 +2,16 @@
 * TO DO
 
     * Allgemeines
-        * Hintergrund
+        * --
         
     * Chat
-        * schön
-        * box
-        * username checken (doppelter etc)
-        * Liniengedöhnse anpassen
-        * Name in extra Farbe + Fett
-        * Nachrichten nicht abwechselnd breit und eng
+        * Passt schon so
         
     * Leinwand
-        * Farbenänderung an andere senden
-        * Positionierung
-        * Kommentare im Code
-        * Leinwandinhalt an gerade beigetretene Spieler senden
+        * linie ist nicht immer breit nach neu laden oder so
+            --> aber Jann sagt das ist ok so
+        * sonst fertig soweit?!
         
     * Timer 
-        * Design nicht als Button
-        
-        
-        
-        
-        
-        
-<<<<<<< HEAD
-
-=======
-        * bei 350px (höhe) wird liste abgeschnitten (workaround)
->>>>>>> origin/master
-
-        
+        * unten rechts beim balken ist weißer punkt
+        * Blinken wenn nur noch wenig Zeit über ist                
