@@ -125,7 +125,7 @@ body{
 #wortundtimer{
     width: 15%;
     height: 70%;
-	min-width: 170px;
+	min-width: 150px;
     
     /*Anordnung ratewort und timer in zeilen*/
 	display: flex;
@@ -219,7 +219,7 @@ body{
 	/*farbbuttons als zeilen*/
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
 	align-content: center;
 	align-items: center;
 }
@@ -265,13 +265,18 @@ body{
     align-content: center;
     align-items: center;
     justify-content: center;
-	border-radius: 6px;
 }    
 
 	#rahmenleinwand{
-		width: 600px;
-        height: 350px;
-		box-shadow: 10px 10px 10px 10px #349e92;
+		width: 602px;
+        height: 352px;
+		background-color: aqua;
+		display: flex;
+		flex-direction: row;
+		align-content: center;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
 	}
 	
     #leinwand{
@@ -628,17 +633,16 @@ body{
 }    
 
 	#rahmenleinwand{
-		width: 600px;
-        height: 400px;
+		width: 410px;
+        height: 260px;
 		background: #349e92;
-		border: 1px solid #FFF;
+		border-color:  5px #349e92;
 		border-radius: 5px;
-		box-shadow: 1px 2px 4px rgba(0,0);
 	}
 	
     #leinwand{
-        width: 600px;
-        height: 350px;
+        width: 400px;
+        height: 250px;
 		background-color: white;
     }
 	
