@@ -82,7 +82,7 @@ socket.on('beitritt', function (check) {
         document.getElementById("loginrahmen").style.display = "none";
         var liste = document.getElementById("messages");
         var child = document.createElement("li");
-        child.appendChild(document.createTextNode("Hallo du! Willkommen bei der krassesten WebApp auf Erden :)"));
+        child.appendChild(document.createTextNode("Hallo du! Willkommen bei Guess What!"));
 
         liste.appendChild(child);
         initLeinwand();
