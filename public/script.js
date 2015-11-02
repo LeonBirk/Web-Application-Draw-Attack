@@ -3,7 +3,10 @@ document.getElementById("header").style.display = 'none';
 document.getElementById("alle").style.display = 'none';
 
 //Gibt an, ob der Spieler Maler ist oder nicht
-var maler = false; 
+var maler = false;
+var leinwand = document.getElementById("leinwand");
+var clearButton = document.getElementById ("farbklecks");
+var paint = false;
 
 var socket = io();
 initLeinwand();
@@ -15,9 +18,10 @@ var usrname = document.getElementById("logineingabefeld");
 loginbutton.onclick = function () {
     socket.emit('beitritt', usrname.value);
 };
-//Eingabe ohne vorher ins Feld zu klicken
+//Setzt den Fokus in das Eingabefeld für den Benutzernamen
 usrname.focus();
-//wenn in Eingabefeld Login mit Enter
+
+//Login mit Enter ermöglichen
 usrname.onkeypress = function (key) {
     if (key.which == 13) {
         loginbutton.onclick();
@@ -27,16 +31,17 @@ usrname.onkeypress = function (key) {
 //Chat Logik
 var sendebutton = document.getElementById("chatsendebutton");
 var text = document.getElementById("chateingabefeld");
-sendebutton.onclick = function () {
+    //Sendet die Chatnachricht an die anderen Mitspieler
+sendebutton.onclick = function () { 
     if(text.value){
         socket.emit('chat message', text.value);
     }
     text.value = '';
 };
-//Eingabe ohne vorher ins Feld zu klicken
-text.focus();
-//wenn in Eingabefeld Senden mit Enter
-text.onkeypress = function (key) {
+    //setzt den Fokus in das Texteingabefeld vom Chat
+text.focus(); 
+    //Senden mit Enter
+text.onkeypress = function (key) { 
     if (key.which == 13) {
         sendebutton.onclick();
     }
@@ -52,21 +57,20 @@ var liste = document.getElementById("messages");
     var uhrzeit = new Date();
     var stunde = uhrzeit.getHours();
     var minute = uhrzeit.getMinutes();
+    var sekunde = uhrzeit.getSeconds();
+        //Formatierung der Zeit
     if (minute<10){
         minute = '0' + minute;}
-    else{}
-    var sekunde = uhrzeit.getSeconds();
-    if (sekunde<10){
-        sekunde = '0' + minute;}
-    else{}
+    
     var zeit = '[' + stunde + ':' + minute + ':' + sekunde + '] ';
     
-    //Nachricht zusammensetzen
+        //Nachricht zusammensetzen
     if(name){
         msg.innerHTML = zeit + '<b>' + name + ': </b>' + nachricht;
     }else{
         msg.innerHTML = zeit + '<b>' + nachricht + '</b>';
     }
+        //Nachricht dem Chat hinzufügen
     child.appendChild(msg);
     liste.appendChild(child);
     
@@ -74,17 +78,21 @@ var liste = document.getElementById("messages");
     liste.scrollTop = liste.scrollHeight;
 });
 
-//überprüfung ob Nutzername bereits vergeben ist und wenn nicht: anzeigen der Webseite 
+/*
+Beitrittsfunktion:
+    @check: sollte ein boolean sein, bei dem der Server Rückschluss darauf gibt, ob der Benutzername bereits vergeben wurde oder nicht
+*/
 socket.on('beitritt', function (check) {
     if(check){
+            //ausblenden des Logins und einblenden des Contents
         document.getElementById("header").style.display = "block";
         document.getElementById("alle").style.display = "flex";
         document.getElementById("loginrahmen").style.display = "none";
         var liste = document.getElementById("messages");
         var child = document.createElement("li");
-        child.appendChild(document.createTextNode("Hallo du! Willkommen bei der krassesten WebApp auf Erden :)"));
-
+        child.appendChild(document.createTextNode("Hallo du! Willkommen bei der krassesten WebApp auf Erden :)")); //Begrüßungsnachricht für den Client
         liste.appendChild(child);
+        
         initLeinwand();
         //initiale Maleinstellung
         var farbe = "black";
@@ -95,26 +103,36 @@ socket.on('beitritt', function (check) {
     }
 });
 
-// Reinigen der Leinwand
+/*
+Reinigen der Leinwand:
+    Die bisherige Linie wird beendet damit clearRect() funktioniert
+*/
 socket.on('reinigen', function () {
-    var leinwand = document.getElementById("leinwand");
     context.closePath();
     context.beginPath();
     context.clearRect(0, 0, leinwand.width, leinwand.height);
 });
 
-// Leinwand reinigen nach Click
-var clearButton = document.getElementById ("farbklecks");
+/*
+Funktion der Leinwandreinigung auf den clearButton legen
+*/
 clearButton.onclick = function () { 
  if(maler == true ) 
 	 socket.emit('leinwandReinigen')};
 
-//Spieler schließt den Tab
+/*
+onBeforeUnload:
+    Client sendet dem Server das Signal, dass er das Spiel verlässt
+*/
 window.onbeforeunload = function () {
     socket.emit('verlassen');
 }
 
-//Das zu erratende Wort wird angezeigt
+/*
+Ratelogik:
+    @msg enthält den Inhalt, der dem Client im Statusfenster angezeigt wird
+    @malzustand setzt den malzustand des Clients
+*/
 socket.on('raten', function (msg, malzustand) {
             document.getElementById("status").innerHTML = (msg);
             if (malzustand == true) {
@@ -127,7 +145,10 @@ socket.on('raten', function (msg, malzustand) {
             maler = malzustand;
 });
 
-// Liste der Spieler
+/*
+Listenaktualisierung:
+    @spielerArray enthält die Daten der aktuellen Spieler
+*/
 socket.on('listenaktualisierung', function (spielerArray) {
     var liste = document.getElementById("malerliste");
     // leeren der Liste
@@ -160,10 +181,6 @@ socket.on('updateTimer', function (timVal){
 /*
  *    Logik des Malbereiches
  */
-
-var paint = false;
-
-
 // zum initialisieren des Malbereichs
 leinwand = document.getElementById('leinwand');
 context = leinwand.getContext("2d");
@@ -172,11 +189,15 @@ context = leinwand.getContext("2d");
 leinwand.addEventListener("mousedown", malbeginn, false);
 leinwand.addEventListener("mousemove", sendemalen, false);
 leinwand.addEventListener("mouseup", malende, false);
-leinwand.addEventListener("mouseleave", ausBildschirm, false);
+leinwand.addEventListener("mouseleave", malende, false);
 
 var vorherigeClicks = {};
 var clickDrag = new Array();
 
+/*
+malbeginn:
+    Wird bei mousedown ausgeführt. Die Position beim Klick wird dokumentiert
+*/
 function malbeginn(e) {
     e.preventDefault();
     if(maler){
@@ -187,6 +208,12 @@ function malbeginn(e) {
     }
 }
 
+/*
+sendemalen:
+    Wird bei Bewegung der Maus ausgeführt
+    Funktion nur als Maler
+        sendet die Aktion an den Server und lässt auf Clientseite zeichnen 
+*/
 function sendemalen(e) {
     if(maler){
     if (paint) {
@@ -200,19 +227,24 @@ function sendemalen(e) {
     }
 }
 
-// Logik damit nur der Maler malen kann
+/*
+malende:
+    Wird bei mouseup ausgeführt und sobald der mauszeiger die Leinwand verlässt
+    Beendet den Malvorgang
+*/
 function malende(e) {
     if(maler)
     paint = false;
 }
 
-function ausBildschirm(e) {
-    if(maler)
-    paint = false;
-}
 
 
-//Logik um mit verschiedenen Farben zu malen
+/*
+farbuebergabe
+    Wird beim Klicken auf einer der Farbbuttons ausgeführt
+    Wählt die angeklickte Farbe aus und sendet an den Server die Änderung
+    Ändert beim Radiergummi die Dicke auf 15px und bei anderen auf 3px
+*/
 function farbuebergabe (buttonnr){
     if(maler){
         var element = document.getElementById(buttonnr);
@@ -231,6 +263,10 @@ function farbuebergabe (buttonnr){
     }
 }
 
+/*
+farbe_setzen:
+    Ändert auf die übergebene Farbe und Breite    
+*/
 socket.on('farbe_setzen', function(neueFarbe, neueBreite){
     context.closePath();
     context.beginPath();
@@ -238,7 +274,15 @@ socket.on('farbe_setzen', function(neueFarbe, neueBreite){
     context.lineWidth = neueBreite;
 });
 
-// Mallogik
+/*
+malen
+    @vonX x-lage der vorherigen mausposition
+    @vonY y-lage der vorherigen mausposition
+    @nachX x-lage der neuen mausposition
+    @nachY y-lage der neuen mausposition
+    
+    Zieht einen Strich innerhalb der Leinwand von der vorherigen Mausposition zur neuen
+*/
 function malen(vonX, vonY, nachX, nachY) {    
     context.strokeStyle = farbe;
     context.lineJoin = "round";
@@ -247,13 +291,22 @@ function malen(vonX, vonY, nachX, nachY) {
     context.stroke();
 }
 
-// Übergabe der Zeichnung von Server an Ratende
+/*
+socket.on(malen):
+    führt die Funktion malen() aus mit den vom Server gesendeten Werten
+*/
 socket.on('malen', function (vonX, vonY, nachX, nachY) {
     malen(vonX, vonY, nachX, nachY);
 });
 
+//anpassen der Leinwand bei Größenänderung des Fensters
 window.onresize = initLeinwand;
 
+/*
+initLeinwand:
+    Buffert die Leinwand im Canvas Buffer, passt die Leinwandgröße an
+    und stellt das Bild wieder her. Anschließend wird der Buffer auf 0x0px verkleinert
+*/
 function initLeinwand() {
     //Canvas Buffern
     var buffer = document.getElementById('buffer');
