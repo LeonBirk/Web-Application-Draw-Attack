@@ -507,8 +507,8 @@ body{
 }    
 
         #wort{
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -520,7 +520,7 @@ body{
 			width: 100%;
 			height: 30%;
 			text-align: center;
-			font-size: 5em;
+			font-size: 4em;
     		font-weight: bold;
 			font-family: GoodDog;
 		}
@@ -535,8 +535,8 @@ body{
 		}
 	
         #timer{
-            width: 250px;
-            height: 166px;
+            width: 200px;
+            height: 133px;
             color: black;
 			display: flex;
 			flex-direction: column;
@@ -549,7 +549,7 @@ body{
 			width: 100%;
 			height: 40%;
 			text-align: center;
-			font-size: 3em;
+			font-size: 30px;
 			font-family: GoodDog;
 			color: black;
 		}
@@ -1170,6 +1170,7 @@ body{
 			margin-right: 1%;
 			margin-top: 0.5%;
 			margin-bottom: 0.5%;
+            font-size: 13px;
 		}
 	
         #messages li:nth-child(odd) {
@@ -1533,6 +1534,7 @@ body{
 			margin-right: 1%;
 			margin-top: 0.5%;
 			margin-bottom: 0.5%;
+            font-size:13px;
 		}
 	
         #messages li:nth-child(odd) {
