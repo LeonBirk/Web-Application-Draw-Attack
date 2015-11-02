@@ -62,16 +62,20 @@ var liste = document.getElementById("messages");
     liste.scrollTop = liste.scrollHeight;
 });
 
-socket.on('beitritt', function (msg) {
-    document.getElementById("header").style.display = "block";
-    document.getElementById("alle").style.display = "flex";
-    document.getElementById("loginrahmen").style.display = "none";
-    var liste = document.getElementById("messages");
-    var child = document.createElement("li");
-    child.appendChild(document.createTextNode(msg));
+socket.on('beitritt', function (check) {
+    if(check){
+        document.getElementById("header").style.display = "block";
+        document.getElementById("alle").style.display = "flex";
+        document.getElementById("loginrahmen").style.display = "none";
+        var liste = document.getElementById("messages");
+        var child = document.createElement("li");
+        child.appendChild(document.createTextNode("Hallo du! Willkommen bei der krassesten WebApp auf Erden :)"));
 
-    liste.appendChild(child);
-	initLeinwand();
+        liste.appendChild(child);
+        initLeinwand();
+    }else{
+        window.alert("Der Benutzername ist bereits in Verwendung!");
+    }
 });
 
 // Reinigen der Leinwand

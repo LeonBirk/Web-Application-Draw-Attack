@@ -46,21 +46,23 @@ io.on('connection', function (spieler) {
 
     //Anmeldung
     spieler.on('beitritt', function (name) {
-        prüfeNamen(name);
-        spieler.name = name;
-        spieler.points = 0; ////Punkte für das richtige Erraten
-        if (alleSpieler.length == 0) {
-            spieler.zustand = 1;
-        } else {
-            spieler.zustand = 0;
+        var check = prüfeNamen(name);
+        if(check){
+            spieler.name = name;
+            spieler.points = 0; ////Punkte für das richtige Erraten
+            if (alleSpieler.length == 0) {
+                spieler.zustand = 1;
+            } else {
+                spieler.zustand = 0;
+            }
+            alleSpieler.push(spieler);
+
+            // Anzeigen der Spieler in Spielerliste
+            spielerListeakt();
         }
-        alleSpieler.push(spieler);
- 
-        // Anzeigen der Spieler in Spielerliste
-        spielerListeakt();
 
 
-        spieler.emit('beitritt', "Hallo du! Willkommen im Chat");
+        spieler.emit('beitritt', check);
         showSpielstatus(); //// zeigt dem, der dran ist, das zu zeichnende Wort an
     });
 
@@ -183,8 +185,10 @@ function prüfeNamen(name)
             if(alleSpieler[i].name == name)
                 {
                     console.log("Dieser Name wird bereits verwendet.");
+                    return false;
                 }
         }
+    return true; //name wurde nicht gefunden
 }
 
 
