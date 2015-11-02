@@ -268,9 +268,9 @@ body{
 }    
 
 	#rahmenleinwand{
-		width: 602px;
-        height: 352px;
-		background-color: aqua;
+		width: 608px;
+        height: 358px;
+		background-color: #349e92;
 		display: flex;
 		flex-direction: row;
 		align-content: center;
@@ -633,16 +633,20 @@ body{
 }    
 
 	#rahmenleinwand{
-		width: 410px;
-        height: 260px;
-		background: #349e92;
-		border-color:  5px #349e92;
-		border-radius: 5px;
+		width: 407px;
+        height: 240px;
+		background-color: #349e92;
+		display: flex;
+		flex-direction: row;
+		align-content: center;
+		align-items: center;
+		justify-content: center;
+		border-radius: 6px;
 	}
 	
     #leinwand{
         width: 400px;
-        height: 250px;
+        height: 233.33333px;
 		background-color: white;
     }
 	
