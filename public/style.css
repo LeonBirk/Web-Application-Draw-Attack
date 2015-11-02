@@ -210,6 +210,8 @@ body{
 			height: 50%;
 			border-radius: 6px;
 			border-bottom-left-radius: 0px;
+            transition: all 1s;
+            transition-timing-function: linear;
 		}
 	
 #farbe{

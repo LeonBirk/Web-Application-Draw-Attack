@@ -2,7 +2,8 @@
 document.getElementById("header").style.display = 'none';
 document.getElementById("alle").style.display = 'none';
 
-var maler = false; //Gibt an, ob der Spieler Maler ist oder nicht
+//Gibt an, ob der Spieler Maler ist oder nicht
+var maler = false; 
 
 var socket = io();
 initLeinwand();
@@ -40,15 +41,26 @@ text.onkeypress = function (key) {
     }
 }
 
+// Ausgabe der Chat-Nachricht
 socket.on('chat message', function (nachricht, name) {
 var liste = document.getElementById("messages");
     var child = document.createElement("li");
     var msg = document.createElement("span");
+    
+    // Aktuelle Zeit der Nachricht hinzufügen format: [00:00:00]
     var uhrzeit = new Date();
     var stunde = uhrzeit.getHours();
     var minute = uhrzeit.getMinutes();
+    if (minute<10){
+        minute = '0' + minute;}
+    else{}
     var sekunde = uhrzeit.getSeconds();
+    if (sekunde<10){
+        sekunde = '0' + minute;}
+    else{}
     var zeit = '[' + stunde + ':' + minute + ':' + sekunde + '] ';
+    
+    //Nachricht zusammensetzen
     if(name){
         msg.innerHTML = zeit + '<b>' + name + ': </b>' + nachricht;
     }else{
@@ -56,12 +68,12 @@ var liste = document.getElementById("messages");
     }
     child.appendChild(msg);
     liste.appendChild(child);
+    
     // Zum Ende der Chat-Liste scrollen
-    
-    
     liste.scrollTop = liste.scrollHeight;
 });
 
+//überprüfung ob Nutzername bereits vergeben ist und wenn nicht: anzeigen der Webseite 
 socket.on('beitritt', function (check) {
     if(check){
         document.getElementById("header").style.display = "block";
@@ -74,6 +86,7 @@ socket.on('beitritt', function (check) {
         liste.appendChild(child);
         initLeinwand();
     }else{
+        // Warnung das Nutzername vergeben ist
         window.alert("Der Benutzername ist bereits in Verwendung!");
     }
 });
@@ -85,6 +98,7 @@ socket.on('reinigen', function () {
     context.beginPath();
     context.clearRect(0, 0, leinwand.width, leinwand.height);
 });
+
 // Leinwand reinigen nach Click
 var clearButton = document.getElementById ("farbklecks");
 clearButton.onclick = function () { 
@@ -108,7 +122,6 @@ socket.on('raten', function (msg, malzustand) {
             }
             maler = malzustand;
 });
-// Chat Logik Ende
 
 // Liste der Spieler
 socket.on('listenaktualisierung', function (spielerArray) {
@@ -136,7 +149,6 @@ socket.on('listenaktualisierung', function (spielerArray) {
 
 //Logik Timer
 socket.on('updateTimer', function (timVal){
-        /*document.getElementById("timer").innerHTML = timVal; */
 		document.getElementById("fuellung").style.width = (timVal*100/90) + "%";
 		document.getElementById("prozent").innerHTML = timVal;
 })
@@ -183,6 +195,7 @@ function sendemalen(e) {
     }
 }
 
+// Logik damit nur der Maler malen kann
 function malende(e) {
     if(maler)
     paint = false;
@@ -195,6 +208,7 @@ function ausBildschirm(e) {
 
 var farbe = "black";
 
+//Logik um mit verschiedenen Farben zu malen
 function farbuebergabe (buttonnr){
     if(maler){
         var element = document.getElementById(buttonnr);
@@ -212,9 +226,8 @@ socket.on('farbe_setzen', function(neueFarbe){
     context.beginPath();
 });
 
-function malen(vonX, vonY, nachX, nachY) {
-    /*var farbe = document.getElementsByClassName('farbbutton').addEventListener;*/
-    
+// Mallogik
+function malen(vonX, vonY, nachX, nachY) {    
     context.strokeStyle = farbe;
     context.lineJoin = "round";
     context.lineWidth = 5;
@@ -223,6 +236,7 @@ function malen(vonX, vonY, nachX, nachY) {
     context.stroke();
 }
 
+// Übergabe der Zeichnung von Server an Ratende
 socket.on('malen', function (vonX, vonY, nachX, nachY) {
     malen(vonX, vonY, nachX, nachY);
 });
@@ -238,7 +252,7 @@ function initLeinwand() {
     buffer.height = h;
     buffer.getContext('2d').drawImage(leinwand, 0, 0);
     
-    //leinwand wiederherstellen
+    //leinwand wiederherstellen und größe der Leinwand an fenster größe anpasssen
     w = document.getElementById("leinwand").clientWidth;
     h = document.getElementById("leinwand").clientHeight;
     leinwand.width = w;
