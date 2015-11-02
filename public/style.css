@@ -261,7 +261,6 @@ body{
     width: 60%;
     height: 70%;
 	min-width: 600px;
-    background-color: lightgrey;
 	/*positioniert die Leinwand in der Mitte*/
 	display: flex;
     flex-direction: row;
@@ -271,6 +270,12 @@ body{
 	border-radius: 6px;
 }    
 
+	#rahmenleinwand{
+		width: 600px;
+        height: 350px;
+		box-shadow: 10px 10px 10px 10px #349e92;
+	}
+	
     #leinwand{
         width: 600px;
         height: 350px;
@@ -613,7 +618,6 @@ body{
     width: 70%;
     height: 50%;
 	min-width: 400px;
-    background-color: lightgrey;
 	/*positioniert die Leinwand in der Mitte*/
 	display: flex;
     flex-direction: row;
@@ -623,9 +627,18 @@ body{
 	border-radius: 6px;
 }    
 
+	#rahmenleinwand{
+		width: 600px;
+        height: 400px;
+		background: #349e92;
+		border: 1px solid #FFF;
+		border-radius: 5px;
+		box-shadow: 1px 2px 4px rgba(0,0);
+	}
+	
     #leinwand{
-        width: 400px;
-        height: 233px;
+        width: 600px;
+        height: 350px;
 		background-color: white;
     }
 	
@@ -753,7 +766,7 @@ body{
     
         #messages{
 			width: 90%;
-            min-width: 500px;
+            min-width: 300px;
             height: 80%;
 			min-height: 30px;
             background-color: dimgray;
@@ -978,10 +991,19 @@ body{
     justify-content: center;
 	border-radius: 6px;
 }    
+	
+	#rahmenleinwand{
+		width: 400px;
+        height: 233px;
+		background: #349e92;
+		border: 1px solid #FFF;
+		border-radius: 5px;
+		box-shadow: 1px 2px 4px rgba(0,0);
+	}
 
     #leinwand{
         width: 400px;
-        height: 233.33333px;
+        height: 233px;
 		background-color: white;
     }
 	
