@@ -2460,14 +2460,14 @@ body{
     width: 85%;
     height: 60%;
 	min-width: 400px;
-    background-color: lightgrey;
 	/*positioniert die Leinwand in der Mitte*/
-	display: none;
+	display: flex;
     flex-direction: row;
     align-content: center;
     align-items: center;
     justify-content: center;
 	border-radius: 6px;
+	visibility: hidden;
 }    
 	
 	#rahmenleinwand{
@@ -2821,14 +2821,14 @@ body{
     width: 85%;
     height: 60%;
 	min-width: 400px;
-    background-color: lightgrey;
 	/*positioniert die Leinwand in der Mitte*/
-	display: none;
+	display: flex;
     flex-direction: row;
     align-content: center;
     align-items: center;
     justify-content: center;
 	border-radius: 6px;
+	visibility: hidden;
 }    
 	
 	#rahmenleinwand{
