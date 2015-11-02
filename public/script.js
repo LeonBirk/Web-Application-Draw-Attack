@@ -38,15 +38,13 @@ sendebutton.onclick = function () {
     }
     text.value = '';
 };
-    //setzt den Fokus in das Texteingabefeld vom Chat
-text.focus(); 
+
     //Senden mit Enter
 text.onkeypress = function (key) { 
     if (key.which == 13) {
         sendebutton.onclick();
     }
 };
-
 // Ausgabe der Chat-Nachricht
 socket.on('chat message', function (nachricht, name) {
 var liste = document.getElementById("messages");
@@ -84,7 +82,7 @@ Beitrittsfunktion:
 */
 socket.on('beitritt', function (check) {
     if(check){
-            //ausblenden des Logins und einblenden des Contents
+        //ausblenden des Logins und einblenden des Contents
         document.getElementById("header").style.display = "block";
         document.getElementById("alle").style.display = "flex";
         document.getElementById("loginrahmen").style.display = "none";
@@ -98,6 +96,7 @@ socket.on('beitritt', function (check) {
         //initiale Maleinstellung
         var farbe = "black";
         context.lineWidth = 3;
+        document.getElementById("chateingabefeld").focus();
     }else{
         // Warnung das Nutzername vergeben ist
         window.alert("Der Benutzername ist bereits in Verwendung!");
