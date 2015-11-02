@@ -409,8 +409,9 @@ body{
 			overflow: auto;
 			list-style: none;
 			padding-left: 0;
-			border-radius: 6px;
-			margin-bottom: 3px;
+			border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+			margin-bottom: 0px;
         }
     
 		#messages li{
@@ -449,7 +450,8 @@ body{
 			justify-content:space-around;
 			align-content:center;
 			align-items: center;
-			border-radius: 6px;
+			border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
 			background-color: lightgray;
 		}
 	
