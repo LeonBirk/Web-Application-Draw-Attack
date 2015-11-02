@@ -8,12 +8,13 @@ var maler = false;
 var socket = io();
 initLeinwand();
 
+
 //Anmeldelogik
 var loginbutton = document.getElementById("loginbutton");
 var usrname = document.getElementById("logineingabefeld");
 loginbutton.onclick = function () {
     socket.emit('beitritt', usrname.value);
-}
+};
 //Eingabe ohne vorher ins Feld zu klicken
 usrname.focus();
 //wenn in Eingabefeld Login mit Enter
@@ -31,7 +32,7 @@ sendebutton.onclick = function () {
         socket.emit('chat message', text.value);
     }
     text.value = '';
-}
+};
 //Eingabe ohne vorher ins Feld zu klicken
 text.focus();
 //wenn in Eingabefeld Senden mit Enter
@@ -39,7 +40,7 @@ text.onkeypress = function (key) {
     if (key.which == 13) {
         sendebutton.onclick();
     }
-}
+};
 
 // Ausgabe der Chat-Nachricht
 socket.on('chat message', function (nachricht, name) {
@@ -85,6 +86,9 @@ socket.on('beitritt', function (check) {
 
         liste.appendChild(child);
         initLeinwand();
+        //initiale Maleinstellung
+        var farbe = "black";
+        context.lineWidth = 3;
     }else{
         // Warnung das Nutzername vergeben ist
         window.alert("Der Benutzername ist bereits in Verwendung!");
@@ -164,6 +168,7 @@ var paint = false;
 leinwand = document.getElementById('leinwand');
 context = leinwand.getContext("2d");
 
+
 leinwand.addEventListener("mousedown", malbeginn, false);
 leinwand.addEventListener("mousemove", sendemalen, false);
 leinwand.addEventListener("mouseup", malende, false);
@@ -206,7 +211,6 @@ function ausBildschirm(e) {
     paint = false;
 }
 
-var farbe = "black";
 
 //Logik um mit verschiedenen Farben zu malen
 function farbuebergabe (buttonnr){
@@ -214,23 +218,30 @@ function farbuebergabe (buttonnr){
         var element = document.getElementById(buttonnr);
         var cssdaten = window.getComputedStyle(element, null);
         farbe = cssdaten.backgroundColor;
-        socket.emit('farbe_setzen', farbe);
     context.closePath();
     context.beginPath();
+        if(buttonnr == "radierer"){
+            context.lineWidth = 15;
+        socket.emit('farbe_setzen', farbe, 15);
+        }else{
+            context.lineWidth = 3;
+        socket.emit('farbe_setzen', farbe, 3);
+        }
+            
     }
 }
 
-socket.on('farbe_setzen', function(neueFarbe){
-    farbe = neueFarbe;
+socket.on('farbe_setzen', function(neueFarbe, neueBreite){
     context.closePath();
     context.beginPath();
+    farbe = neueFarbe;
+    context.lineWidth = neueBreite;
 });
 
 // Mallogik
 function malen(vonX, vonY, nachX, nachY) {    
     context.strokeStyle = farbe;
     context.lineJoin = "round";
-    context.lineWidth = 5;
     context.moveTo(vonX, vonY);
     context.lineTo(nachX, nachY);
     context.stroke();

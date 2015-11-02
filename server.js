@@ -107,8 +107,8 @@ io.on('connection', function (spieler) {
         io.emit('reinigen');
     });
     
-    spieler.on('farbe_setzen', function(farbe){
-        spieler.broadcast.emit('farbe_setzen', farbe);   
+    spieler.on('farbe_setzen', function(farbe, breite){
+        spieler.broadcast.emit('farbe_setzen', farbe, breite);   
     });
 });
 
