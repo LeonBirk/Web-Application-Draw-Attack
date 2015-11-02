@@ -254,10 +254,11 @@ function farbuebergabe (buttonnr){
     context.beginPath();
         if(buttonnr == "radierer"){
             context.lineWidth = 15;
-        socket.emit('farbe_setzen', farbe, 15);
+            farbe = "white";
+            socket.emit('farbe_setzen', farbe, 15);
         }else{
             context.lineWidth = 3;
-        socket.emit('farbe_setzen', farbe, 3);
+            socket.emit('farbe_setzen', farbe, 3);
         }
             
     }
