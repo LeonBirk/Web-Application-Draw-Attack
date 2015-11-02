@@ -201,8 +201,8 @@ malbeginn:
 function malbeginn(e) {
     e.preventDefault();
     if(maler){
-    vorherigeClicks.mouseX = e.pageX - leinwand.offsetLeft;
-    vorherigeClicks.mouseY = e.pageY - leinwand.offsetTop;
+    vorherigeClicks.mouseX = (e.pageX - leinwand.offsetLeft)/leinwand.width;
+    vorherigeClicks.mouseY = (e.pageY - leinwand.offsetTop)/leinwand.height;
 
     paint = true;
     }
@@ -217,8 +217,8 @@ sendemalen:
 function sendemalen(e) {
     if(maler){
     if (paint) {
-        neuX = e.pageX - leinwand.offsetLeft;
-        neuY = e.pageY - leinwand.offsetTop;
+        neuX = (e.pageX - leinwand.offsetLeft)/leinwand.width;
+        neuY = (e.pageY - leinwand.offsetTop)/leinwand.height;
         socket.emit('zeichnung', vorherigeClicks.mouseX, vorherigeClicks.mouseY, neuX, neuY);
         malen(vorherigeClicks.mouseX, vorherigeClicks.mouseY, neuX, neuY);
         vorherigeClicks.mouseX = neuX;
@@ -281,13 +281,14 @@ malen
     @nachX x-lage der neuen mausposition
     @nachY y-lage der neuen mausposition
     
+    die Lagen sind in Relation zur Höhe und Breite übergeben
     Zieht einen Strich innerhalb der Leinwand von der vorherigen Mausposition zur neuen
 */
 function malen(vonX, vonY, nachX, nachY) {    
     context.strokeStyle = farbe;
     context.lineJoin = "round";
-    context.moveTo(vonX, vonY);
-    context.lineTo(nachX, nachY);
+    context.moveTo((vonX * leinwand.width), (vonY * leinwand.height));
+    context.lineTo((nachX * leinwand.width), (nachY * leinwand.height));
     context.stroke();
 }
 
@@ -301,6 +302,8 @@ socket.on('malen', function (vonX, vonY, nachX, nachY) {
 
 //anpassen der Leinwand bei Größenänderung des Fensters
 window.onresize = initLeinwand;
+
+
 
 /*
 initLeinwand:
