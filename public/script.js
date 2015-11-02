@@ -90,12 +90,8 @@ socket.on('beitritt', function (check) {
         document.getElementById("loginrahmen").style.display = "none";
         var liste = document.getElementById("messages");
         var child = document.createElement("li");
-<<<<<<< HEAD
         child.appendChild(document.createTextNode("Hallo du! Willkommen bei Guess What!"));
 
-=======
-        child.appendChild(document.createTextNode("Hallo du! Willkommen bei der krassesten WebApp auf Erden :)")); //Begrüßungsnachricht für den Client
->>>>>>> origin/master
         liste.appendChild(child);
         
         initLeinwand();
