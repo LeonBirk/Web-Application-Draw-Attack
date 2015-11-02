@@ -107,7 +107,7 @@ body{
             background: #349e92;
 }
 
-@media screen and (min-width:1350px)  {
+@media screen and (min-width: 1350px)  {
     
 #alle{
     height: 90%;
@@ -480,7 +480,7 @@ body{
         }
 }
 
-@media screen and (min-height:810px) {
+@media screen and (min-height: 810px) {
     
 #alle{
     height: 90%;
@@ -853,7 +853,8 @@ body{
         }
 }
 
-@media screen and (min-width:1001px) and (max-width:1350px) {
+
+@media screen and (min-width: 1001px) and (max-width: 1349px) {
 
 #alle{
     height: 90%;
@@ -1216,7 +1217,7 @@ body{
         }
 }
 
-@media screen and (min-height:601px) and (max-height:810px) {
+@media screen and (min-height: 601px) and (max-height: 809px) {
 
 #alle{
     height: 90%;
@@ -1579,7 +1580,8 @@ body{
         }
 }
 
-@media screen and (max-width:1000px){
+
+@media screen and (min-width: 578px) and (max-width: 1000px){
 
 #alle{
     height: 90%;
@@ -1946,7 +1948,7 @@ body{
         }
 }
 
-@media screen and (max-height:600px){
+@media screen and (min-height:460px) and (max-height: 600px){
 
 #alle{
     height: 90%;
@@ -2313,18 +2315,17 @@ body{
         }
 }
 
-@media screen and (max-width:600px) and (max-height:300px){
+
+@media screen and (max-width: 577px) {
 
 #alle{
-    height: 87%;
+    height: 90%;
     /*alle divs in spalten anordnen*/
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-	justify-content: center;
-	margin: 3%;
+	background-image: url(Fenster.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	
 }    
     
 #wortundtimer{
@@ -2332,7 +2333,7 @@ body{
     height: 10%;
 	min-width: 200px;
     /*Wort und Farbe in Spalten*/
-    display: flex;
+    display: none;
     flex-direction: row;
 	flex-wrap: wrap;
     align-content: center;
@@ -2343,7 +2344,7 @@ body{
         #wort{
             width: 30%;
             height: 100%;
-			display: flex;
+			display: none;
 			flex-direction: column;
 			align-items: center;
 			align-content: center;
@@ -2392,7 +2393,7 @@ body{
 			width: 100%;
 			height: 60%;
 			border: 2px solid gray;
-			display: flex;
+			display: none;
 			flex-direction: column;
 			align-items: flex-start;
 			align-content: flex-start;
@@ -2422,7 +2423,7 @@ body{
         width: 15%;
         height: 60%;
         /*farbbuttons als zeilen*/
-        display: flex;
+        display: none;
         flex-direction: column;
         justify-content: space-between;
         align-content: center;
@@ -2466,7 +2467,7 @@ body{
 	min-width: 400px;
     background-color: lightgrey;
 	/*positioniert die Leinwand in der Mitte*/
-	display: flex;
+	display: none;
     flex-direction: row;
     align-content: center;
     align-items: center;
@@ -2499,7 +2500,7 @@ body{
     width: 20%;
     height: 20%;
     /*Rangliste und Button in Zeilen anordnen*/
-    display: flex;
+    display: none;
     flex-direction: column;
 	justify-content: center;
 	align-content: center;
@@ -2548,7 +2549,7 @@ body{
 		#zumscrollen{
 			width: 100%;
 			height: 75%;
-			display: flex;
+			display: none;
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: space-around;
@@ -2577,7 +2578,7 @@ body{
 		width: 100%;
 		min-width: 100px;
         /*Setzt Button genau in Mitte des divs*/
-        display: flex;
+        display: none;
         align-content: center;
         align-items: center;
         justify-content: center;
@@ -2592,7 +2593,7 @@ body{
     width: 80%;
     height: 20%;
     /*Anordnung des Chatfensters in der Mitte*/
-    display: flex;
+    display: none;
     align-content: center;
     align-items: center;
     justify-content: center;
@@ -2605,7 +2606,7 @@ body{
         height: 100%;
 		min-height: 10px;
         /*Anordnung der Nachrichten, Eingabe und Sendebutton mit flex*/
-        display: flex;
+        display: none;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content:space-around;
@@ -2654,7 +2655,7 @@ body{
 		#eingabeundbutton{
 			width: 100%;
 			height: 50px;
-			display: flex;
+			display: none;
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content:space-around;
@@ -2677,20 +2678,367 @@ body{
         }
 }
 
+@media screen and (max-height: 459px){
 
+#alle{
+    height: 90%;
+    /*alle divs in spalten anordnen*/
+	background-image: url(Fenster.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	
+}    
+    
+#wortundtimer{
+    width: 97%;
+    height: 10%;
+	min-width: 200px;
+    /*Wort und Farbe in Spalten*/
+    display: none;
+    flex-direction: row;
+	flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}    
 
+        #wort{
+            width: 30%;
+            height: 100%;
+			display: none;
+			flex-direction: column;
+			align-items: center;
+			align-content: center;
+			justify-content: space-between;
+		}
+	
+		#wortueberschrift{
+			width: 100%;
+			height: 30%;
+			text-align: center;
+			font-size: 1em;
+    		font-weight: bold;
+			font-family: GoodDog;
+		}
+	
+		#status{
+			width: 100%;
+			height: 50%;
+			text-align: center;
+    		font-weight: bold;
+			font-family: sans-serif;
+			font-size: 10px;
+		}
+	
+        #timer{
+            width: 30%;
+            height: 100%;
+            color: black;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			align-content: center;
+			justify-content: space-around;
+        }
+	
+		#zeit{
+			width: 100%;
+			height: 30%;
+			text-align: center;
+			font-size: 1em;
+			font-weight: bold;
+			font-family: GoodDog;
+		}
+	
+		#rahmentimer{
+			width: 100%;
+			height: 60%;
+			border: 2px solid gray;
+			display: none;
+			flex-direction: column;
+			align-items: flex-start;
+			align-content: flex-start;
+			justify-content: space-around;
+			border-radius: 6px;
+		}
+	
+		#prozent{
+			width: 100%;
+			height: 50%;
+			text-align: bottom;
+			color: gray;
+			font-weight: normal;
+			font-size: 10px;
+			
+		}
+	
+		#fuellung{
+			background: #349e92;
+			width: 100%;
+			height: 50%;
+			border-radius: 6px;
+			border-bottom-left-radius: 0px;
+		}
+    
+    #farbe{
+        width: 15%;
+        height: 60%;
+        /*farbbuttons als zeilen*/
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        align-content: center;
+        align-items: center;
+    }
+    
+    /*Klasse für generelles Layout der Farbbuttons*/
+    .farbbutton{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    }
+    
+        #button1{background-color: yellow;}
 
+        #button2{background-color: orange;}
 
+        #button3{background-color: red;}
 
+        #button4{background-color: purple;}
 
+        #button5{background-color: darkblue;}
 
+        #button6{background-color: dodgerblue;}
 
+        #button7{background-color: green;}
 
+        #button8{background-color: saddlebrown;}
 
+        #button9{background-color: black;}
 
+        #radierer{
+            width: 25px;
+            height: auto;
+            background-color: white;
+}
+    
+#malbereich{
+    width: 85%;
+    height: 60%;
+	min-width: 400px;
+    background-color: lightgrey;
+	/*positioniert die Leinwand in der Mitte*/
+	display: none;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+	border-radius: 6px;
+}    
+	
+	#rahmenleinwand{
+		width: 400px;
+        height: 233px;
+		background: #349e92;
+		border: 1px solid #FFF;
+		border-radius: 5px;
+		box-shadow: 1px 2px 4px rgba(0,0);
+	}
 
+    #leinwand{
+        width: 400px;
+        height: 233px;
+		background-color: white;
+    }
+	
+	#buffer{
+		width: 150px;
+		height: 0px;
+		flex: 0;
+	}
+ 
+#ranglisteundclearleinwand{
+    width: 20%;
+    height: 20%;
+    /*Rangliste und Button in Zeilen anordnen*/
+    display: none;
+    flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+    overflow: visible;
+}    
+    
+    #rangliste{
+        height: 40%;
+        /*rangliste in einzelne divs unterteilen*/
+        display: none;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        align-content: flex-start;
+}
 
+        #ueberschrift{
+            width: 100%;
+            height: 20%;
+            text-align: center;
+			font-size: 3em;
+    		font-weight: bold;
+			font-family: GoodDog;
+}    
 
+        #spieler{
+            width: 45%;
+            height: 5%;
+			font-size: 2em;
+			font-weight: bold;
+			font-family: GoodDog;
+			padding-bottom: 10px;
+		}	
+
+        #punkte{
+            width: 20%;
+            height: 5%;
+			font-size: 2em;
+			font-weight: bold;
+			font-family: GoodDog;
+			padding-bottom: 10px;
+        }
+
+		#zumscrollen{
+			width: 100%;
+			height: 75%;
+			display: none;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			align-items: flex-start;
+			align-content: flex-start;
+			overflow: auto;
+		}
+	
+        #malerliste{
+            width: 45%;
+            height: auto;
+			padding-left: 15px;
+			
+}
+
+        #punkteliste{
+            width: 20%;
+            height: auto;
+			list-style: none;
+			padding-left: 0;
+			text-align: center;
+}
+
+    #clearleinwand{
+        height: 100%;
+		width: 100%;
+		min-width: 100px;
+        /*Setzt Button genau in Mitte des divs*/
+        display: none;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+    
+		#farbklecks{
+			width: 70%;
+			height: auto;
+		}
+    
+#chat{
+    width: 80%;
+    height: 20%;
+    /*Anordnung des Chatfensters in der Mitte*/
+    display: none;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    
+}
+	
+    #chatfenster{
+		width: 100%;
+        min-width: 500px;
+        height: 100%;
+		min-height: 10px;
+        /*Anordnung der Nachrichten, Eingabe und Sendebutton mit flex*/
+        display: none;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content:space-around;
+        align-content:center;
+        align-items: center;
+    }
+    
+        #messages{
+			width: 90%;
+            min-width: 500px;
+            height: 80%;
+			min-height: 40px;
+            background-color: dimgray;
+			overflow: auto;
+			list-style: none;
+			padding-left: 0;
+			border-radius: 6px;
+        }
+    
+		#messages li{
+			width: 98%;
+			margin-left: 1%;
+			margin-right: 1%;
+			margin-top: 0.5%;
+			margin-bottom: 0.5%;
+		}
+	
+        #messages li:nth-child(odd) {
+        	background: #eee;
+			height: 17px;
+			padding-bottom: 2px;
+			padding-top: 2px;
+			padding-left: 3px;
+			border-radius: 6px;
+        }
+    
+		#messages li:nth-child(even) {
+        	background: #81F7BE;
+			height: 17px;
+			padding-bottom: 2px;
+			padding-top: 2px;
+			padding-left: 3px;
+			border-radius: 6px;
+        }
+	
+		#eingabeundbutton{
+			width: 100%;
+			height: 50px;
+			display: none;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content:space-around;
+			align-content:center;
+			align-items: center;
+			border-radius: 6px;
+			background-color: lightgray;
+		}
+	
+        #chateingabefeld{
+			width: 60%;
+            min-width: 250px;
+            height: 30px;
+        }
+    
+        #chatsendebutton{
+			width: 30%;
+            min-width: 50px;
+            background: #349e92;
+        }
+}
 
 
 
