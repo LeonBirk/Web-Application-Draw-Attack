@@ -339,7 +339,7 @@ body{
 			justify-content: space-around;
 			align-items: flex-start;
 			align-content: flex-start;
-			overflow: scroll;
+			overflow: auto;
 		}
 	
         #malerliste{
@@ -690,7 +690,7 @@ body{
 			justify-content: space-around;
 			align-items: flex-start;
 			align-content: flex-start;
-			overflow: scroll;
+			overflow: auto;
 		}
 	
         #malerliste{
