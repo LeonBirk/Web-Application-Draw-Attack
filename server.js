@@ -82,9 +82,11 @@ io.on('connection', function (spieler) {
             if(alleSpieler.length > 1){
                 if (alleSpieler[removeID].zustand == 1 && removeID == 0){ //der Zeichner verlässt das Spiel
                     alleSpieler[removeID+1].zustand = 1; //wenn Zeichner der 1. im Array war,  wird der nächste Spieler im Array Zeichner
+					stopTimer(); // bewirkt Neustart des Timers beim Wechsel des Zeichners
                  }
                if (alleSpieler[removeID].zustand == 1 && removeID > 0) {
                     alleSpieler[removeID-1].zustand =1; // ansonsten wird der Spieler davor Zeichner
+					stopTimer(); // bewirkt Neustart des Timers beim Wechsel des Zeichners
                 }                          
                 alleSpieler.splice(removeID,1); // Bei mindestens 2 Usern
 				spielerListeakt();
@@ -93,7 +95,6 @@ io.on('connection', function (spieler) {
 					curZeichnerIndex = j;
                 }
             }
-            stopTimer(); // bewirkt Neustart des Timers beim Wechsel des Zeichners
             showSpielstatus();
             }
             else{ //ist nur noch ein Spieler im Spiel
