@@ -16,7 +16,14 @@ initLeinwand();
 var loginbutton = document.getElementById("loginbutton");
 var usrname = document.getElementById("logineingabefeld");
 loginbutton.onclick = function () {
-    socket.emit('beitritt', usrname.value);
+        if (usrname.value) {
+            //Keine HTML Tags als Username gestattet
+            if (usrname.value.indexOf('<') > -1) {
+                window.alert("HTML Tags sind nicht als Namen gestattet.");
+            } else {
+                socket.emit('beitritt', usrname.value);
+            }
+        }
 };
 //Setzt den Fokus in das Eingabefeld für den Benutzernamen
 usrname.focus();
@@ -32,21 +39,22 @@ usrname.onkeypress = function (key) {
 var sendebutton = document.getElementById("chatsendebutton");
 var text = document.getElementById("chateingabefeld");
 
-    //Sendet die Chatnachricht an die anderen Mitspieler
-sendebutton.onclick = function () { 
-    if(text.value){
-        if(text.value.indexOf('<') > -1){
-            text.value="Ich habe versucht den Chat zu ruinieren.";
+//Sendet die Chatnachricht an die anderen Mitspieler
+sendebutton.onclick = function () {
+    if (text.value) {
+        //Keine HTML Tags als Nachrichten gestattet
+        if (text.value.indexOf('<') > -1) {
+            text.value = "Ich habe versucht den Chat zu ruinieren.";
             socket.emit('chat message', text.value);
-        } 
-        else {
-        socket.emit('chat message', text.value);
-    }}
+        } else {
+            socket.emit('chat message', text.value);
+        }
+    }
     text.value = '';
 };
 
-    //Senden mit Enter
-text.onkeypress = function (key) { 
+//Senden mit Enter
+text.onkeypress = function (key) {
     if (key.which == 13) {
         sendebutton.onclick();
     }
