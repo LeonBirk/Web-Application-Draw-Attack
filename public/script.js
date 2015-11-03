@@ -31,11 +31,17 @@ usrname.onkeypress = function (key) {
 //Chat Logik
 var sendebutton = document.getElementById("chatsendebutton");
 var text = document.getElementById("chateingabefeld");
+
     //Sendet die Chatnachricht an die anderen Mitspieler
 sendebutton.onclick = function () { 
     if(text.value){
+        if(text.value.indexOf('<') > -1){
+            text.value="Ich habe versucht den Chat zu ruinieren.";
+            socket.emit('chat message', text.value);
+        } 
+        else {
         socket.emit('chat message', text.value);
-    }
+    }}
     text.value = '';
 };
 
