@@ -5,13 +5,11 @@
         * --
         
     * Chat
-        * Passt schon so
+        * Super
         
     * Leinwand
-        * linie ist nicht immer breit nach neu laden oder so
-            --> aber Jann sagt das ist ok so
-        * sonst fertig soweit?!
+        * fertig 
         
     * Timer 
-        * unten rechts beim balken ist weißer punkt
-        * Blinken wenn nur noch wenig Zeit über ist                
+        * funktioniert
+        * // optional: Blinken wenn nur noch wenig Zeit über ist                
