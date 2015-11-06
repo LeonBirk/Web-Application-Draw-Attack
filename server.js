@@ -71,7 +71,7 @@ io.on('connection', function (spieler) {
     });
 
     //Spieler verlässt das Spiel
-       spieler.on('verlassen', function () {
+       spieler.on('disconnect', function () {
          var removeID;
          for (var i = 0; i < alleSpieler.length; i++) {
            if (alleSpieler[i].id == spieler.id) {
